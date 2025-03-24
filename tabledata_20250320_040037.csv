@@ -1,0 +1,258 @@
+DATE,Shift,Owner,Tech.,Activity Description
+2024-12-01,3,technician packer shift 2,PACK,bearing foil cutting unit (all)
+2024-12-20,2,technician packer shift 1,PACK,Replace bushing packet 
+2024-12-30,2,technician packer shift 1,PACK,Replace Gearbox top folder
+2025-01-07,1,technician packer shift 1,PACK,Replace filter / element pada glue supply
+2025-01-07,1,technician maker shift 1,MAKE,Replace belt drive  Suction Rod Conveyor
+2025-01-07,1,technician maker shift 1,MAKE,Replace drive wheel SRC
+2025-01-07,1,technician maker shift 1,MAKE,Replace tipping knife
+2025-01-07,1,technician maker shift 1,MAKE,Replace Belt startwheel
+2025-01-08,1,technician maker shift 2,MAKE,Replace Bearing Bullet roller
+2025-01-08,1,operator maker Shift 1 ,MAKE,Lepas separating drum dan cleaning segme
+2025-01-08,1,operator maker Shift 1 ,MAKE,"Cleaning pipa dari deposit tob, ( pastik"
+2025-01-08,1,operator maker Shift 1 ,MAKE,Pastikan oli tidak bocor dan masuk ke ka
+2025-01-09,1,technician maker shift 1,MAKE,Replace Teflon Shifting
+2025-01-09,1,technician maker shift 1,MAKE,Replace  Inspection Cap depan
+2025-01-09,1,technician maker shift 1,MAKE,Replace Needle pada swash drum belakang
+2025-01-09,1,technician maker shift 1,MAKE,Replace  Inspection Cap belakang
+2025-01-09,1,technician maker shift 1,MAKE,Replace Belt Osilator Roller
+2025-01-09,1,technician maker shift 1,MAKE,Replace Filter  CARTRIDGE
+2025-01-09,1,technician maker shift 1,MAKE,Replace Needle pada swash drum depan
+2025-01-10,1,operator maker Shift 1 ,MAKE,Lepas elbow dan cleaning lubang vaccum
+2025-01-10,1,operator maker Shift 1 ,MAKE,Cek dan cleaning jalur pipa chamber (pas
+2025-01-10,1,operator maker Shift 1 ,MAKE,Lepas dan cleaning segmen laser drum
+2025-01-10,1,operator maker Shift 1 ,MAKE,Lepas dan cleaning segmen final cutting
+2025-01-10,1,operator maker Shift 1 ,MAKE,Lepas turning drum & cleaning segmen
+2025-01-10,1,operator maker Shift 1 ,MAKE,Lepas & cleaning segmen intermediate dru
+2025-01-10,1,operator maker Shift 1 ,MAKE,Cek dan cleaning jalur pipa chamber (pas
+2025-01-11,1,operator maker Shift 1 ,MAKE,Lepas semua drum filter unit dan lepas v
+2025-01-11,1,operator maker Shift 1 ,MAKE,Lepas dan cleaning segmen shifting drum
+2025-01-11,1,operator maker Shift 1 ,MAKE,Lepas vacuum chamber rolling drum dan sw
+2025-01-11,1,operator maker Shift 1 ,MAKE,Lepas dan cleaning segmen swash drum
+2025-01-11,1,operator maker Shift 1 ,MAKE,Lepas dan cleaning segmen rolling drum
+2025-01-11,1,operator maker Shift 1 ,MAKE,Lepas drum dan cleaning segmen feed drum
+2025-01-12,1,operator maker Shift 1 ,MAKE,Cleaning segmen rod cutting drum
+2025-01-12,1,operator maker Shift 1 ,MAKE,Cleaning pipa dari deposit (pastikan tid
+2025-01-12,1,operator maker Shift 1 ,MAKE,"Lepas elbow dan pastikan tidak buntu, ("
+2025-01-12,1,operator maker Shift 1 ,MAKE,Lepas dan cleaning segmen take over drum
+2025-01-13,1,kunto,MAKE,replace sleeve VE fan
+2025-01-16,2,technician maker shift 2,MAKE,inspect Belt Filter hopper gear unit
+2025-01-16,2,operator packer  Shift 2,PACK,check belt drive 741
+2025-01-16,3,operator packer  Shift 3,PACK,check belt drive roller feed film unit
+2025-01-16,3,operator maker Shift 3,MAKE,check temperatur gearbox dan motor  HCF
+2025-01-17,1,operator packer  Shift 1,PACK,check suction cup infeed pusher 411
+2025-01-17,2,operator packer  Shift 2,PACK,pengecheckan sambungan belt polychord exit 411
+2025-01-17,1,Electrician shift 1,MAKE,Pengecekan Temperatur dan hambatan motor worm conveyor
+2025-01-17,3,Electrician shift 3,PACK,Inspect sensor B4.6 Boxer (by Visu IO status) dan Kabelnya
+2025-01-17,2,operator maker Shift 2,MAKE,check temperatur gearbox dan motor recycling belt *(50 derjat C)
+2025-01-17,3,operator maker Shift 3,MAKE,Clean and check Sieve and belt 
+2025-01-18,3,operator maker Shift 3,MAKE,Check safety systems and cylinders Tipping paper hood / Cylinder
+2025-01-18,2,Electrician shift 2,PACK,MP& S check koneksi kabel heater turret
+2025-01-18,3,Electrician shift 3,PACK,check fungsional sensor skewed packet detector
+2025-01-18,1,technician packer shift 1,PACK,cleaning & inspect silencer piston cig.plunger
+2025-01-18,1,technician maker shift 1,MAKE,inspect belt laser panjang dan pendek pastikan tidak retak / serabut
+2025-01-18,2,operator packer  Shift 2,PACK,check temperatur gearbox dan motor  maindrive 411 (abnormal sound)
+2025-01-19,1,technician maker shift 1,MAKE,"Inspect all pulley belt laser, pastikan bersih dari klelet dan oileakage. Pastikan bearing OK"
+2025-01-19,2,technician packer shift 2,PACK,"Check knives and clean air filter,vaccum chamber foil cutting"
+2025-01-19,3,Electrician shift 3,MAKE,Check visually and clean Photocell Glue Request - B11M   Gluer / Gluing Pump
+2025-01-23,1,Electrician shift 1,MAKE,Cek area power supply jika ada rembesan
+2025-01-24,2,operator maker Shift 2,MAKE,Inspect Coolant Leakage Resonator LASER
+2025-01-24,3,operator maker Shift 3,MAKE,Inspect Jalur Compressed Air LASER
+2025-01-25,3,technician packer shift 3,PACK,Check suction segmen stamp
+2025-01-25,2,technician packer shift 2,PACK,pengecekan gap pinching dan cek qualitas rubber pinching
+2025-01-25,1,operator packer  Shift 1,PACK,Check lugs (12) Cigarette track 550.13.002
+2025-01-26,2,Electrician shift 2,MAKE,Cek power laser
+2025-01-26,3,"Riyan, Rohadi",PACK,replace motor dan bearing infeed belt boxer
+2025-01-26,3,Rohadi,MAKE,Replace Bearing Blank release
+2025-01-26,3,technician maker shift 3,MAKE,Replace Belt VE fan
+2025-01-26,3,technician maker shift 3,MAKE,Replace Bearing Ejection Drum
+2025-01-26,3,technician maker shift 3,MAKE,Replace Belt circulating fan
+2025-01-26,2,technician packer shift 2,PACK,Replace Belt Merah Inner Frame
+2025-01-26,2,technician maker shift 2,MAKE,Check beam alignment and laser Power
+2025-01-26,2,Electrician shift 2,MAKE,Cek Focal spot
+2025-01-26,2,technician maker shift 2,MAKE,Cek area HF generator di takutkan ada re
+2025-01-26,3,technician maker shift 3,MAKE,Replace Belt drive Conveyor worm
+2025-01-26,2,Electrician shift 2,MAKE,Cek Focal Test laser - Result: Center
+2025-01-26,2,technician maker shift 2,MAKE,Replace Belt laser (250 ±2 Hz) (middle b
+2025-01-26,2,technician maker shift 2,MAKE,Replace Belt laser (150 ±2 Hz)
+2025-01-26,2,Electrician shift 2,MAKE,Check kekencangan HF cable yg di HF generator LASER
+2025-01-26,2,Electrician shift 2,MAKE,Check kekencangan card converter LASER
+2025-01-26,2,technician maker shift 2,MAKE,Check Beam Alignment & Laser Power Meter
+2025-01-26,2,Electrician shift 2,MAKE,Inspect Laser Power Meter: Low Mode Mini
+2025-01-26,2,technician maker shift 2,MAKE,Cek area dalam box resonator di takutkan
+2025-01-26,3,technician maker shift 3,MAKE,Replace Belt trimmer
+2025-02-01,1,operator packer  Shift 1,PACK,peremajaan selang all wrapper
+2025-02-01,1,operator packer  Shift 1,PACK,Replace cylinder Moutchpiece Infeed Senzani
+2025-02-03,1,operator packer  Shift 1,PACK,Check kabel & fungsi SS CIG HOPPER
+2025-02-03,2,operator packer  Shift 2,PACK,Check kabel & fungsi SS GUARD CIG PLUNGE
+2025-02-03,3,operator packer  Shift 3,PACK,Check kabel & fungsi SS FOIL UNIT FRONT
+2025-02-04,3,operator packer  Shift 3,PACK,Check kabel & fungsi SS GUARD FOLDING TURRET REAR
+2025-02-04,1,operator packer  Shift 1,PACK,Check kabel & fungsi SS INNER FRAME CHAN
+2025-02-04,2,operator packer  Shift 2,PACK,Check kabel & fungsi SS GUARD FODING TURRER FRONT
+2025-02-05,1,operator packer  Shift 1,PACK,Check kabel & fungsi SS GUARD MAIN MOTOR
+2025-02-05,2,operator packer  Shift 2,PACK,Check kabel & fungsi SS DD2
+2025-02-08,3,operator packer  Shift 3,PACK,Check dust atau oil leakage pada motor
+2025-02-10,1,Electrician shift 1,PACK,Check sensor B12.5 Pull Flap
+2025-02-10,2,Electrician shift 2,PACK,Check sensor B12.6 Foil edge right
+2025-02-10,3,Electrician shift 3,PACK,Check sensor B22.4 Blank missing packet
+2025-02-11,3,operator packer  Shift 3,PACK,Check pergerakan motor web centering dev
+2025-02-11,1,Electrician shift 1,PACK,Check sensor B10.0 IF Missing 2
+2025-02-11,2,Electrician shift 2,PACK,Check sensor B10.1 IF Missing 1
+2025-02-11,3,Electrician shift 3,PACK,Check sensor B12.4 Foil edge left
+2025-02-12,2,Electrician shift 2,PACK,Check sensor B36.3 Blank missing left
+2025-02-12,3,Electrician shift 3,PACK,Check sensor B38.0 Blank missing right
+2025-02-12,1,Electrician shift 1,PACK,Check sensor B22.5 Blank missing packet
+2025-02-12,1,operator packer  Shift 1,PACK,Check temp. motor MAIN DRIVE 550
+2025-02-12,2,operator packer  Shift 2,PACK,Check temp. motor INFEED BELT CIG HOPPER
+2025-02-12,3,operator packer  Shift 3,PACK,Check temp. motor FOIL BOBBIN LEFT 550
+2025-02-13,1,operator packer  Shift 1,PACK,Check temp. motor FOIL BOBBIN RIGHT 550
+2025-02-13,2,operator packer  Shift 2,PACK,Check temp. motor RESERVOIR FOIL BELT IN
+2025-02-13,3,operator packer  Shift 3,PACK,Check temp. motor INNER FRAME CUTTING UN
+2025-02-13,1,Electrician shift 1,PACK,Check sensor B23.0 Packet in turret
+2025-02-13,2,Electrician shift 2,PACK,Check amplifier 3/4 putaran
+2025-02-13,3,Electrician shift 3,PACK,Check kondisi heater
+2025-02-14,3,Electrician shift 3,PACK,Check Tegangan vacuum stamp
+2025-02-14,1,Electrician shift 1,PACK,Check tahanan socket glue jet stamp
+2025-02-14,2,Electrician shift 2,PACK,Check kondisi kabel glue jet stamp
+2025-02-14,1,operator packer  Shift 1,PACK,Check temp. motor DRYING DRUM 2 550
+2025-02-14,2,operator packer  Shift 2,PACK,Check temp. motor RECYCLING BELT 550
+2025-02-15,1,Electrician shift 1,PACK,Check hambatan di kontaktor vacuum stamp
+2025-02-15,2,Electrician shift 2,PACK,"Hambatan R: 10.5ohm, V: 380V, I: 2.5A vacuum stamp"
+2025-02-17,2,Electrician shift 2,PACK,"Check sensor B73.1 Exit stop 1, pastikan amplifier belum mentok atau 3/4"
+2025-02-17,3,Electrician shift 3,PACK,"Check sensor B76.2 Exit stop 2, pastikan amplifier belum mentok atau 3/4"
+2025-02-18,1,Electrician shift 1,PACK,Check Fungsi SS RESERVOIR UNIT (INFEED +
+2025-02-18,2,Electrician shift 2,PACK,Inspect sensor infeed reservoir (goyang atau tidak)
+2025-02-18,3,Electrician shift 3,PACK,cek sensor infeed reservoir masih berfungsi
+2025-02-19,3,Electrician shift 3,PACK,Inspect sensor exit belt reservoir (goyang atau tidak)
+2025-02-19,1,Electrician shift 1,PACK,Inspect sensor upper belt reservoir (goyang atau tidak)
+2025-02-19,2,Electrician shift 2,PACK,cek sensor Upper belt masih berfungsi baik
+2025-02-20,3,Electrician shift 3,PACK,Check dust atau oil leacakage pada motor
+2025-02-20,2,Electrician shift 2,PACK,Check temp. motor RESERVOIR MAIN DRIVE
+2025-02-20,1,Electrician shift 1,PACK,cek sensor exit belt masih berfungsi baik
+2025-02-21,1,Electrician shift 1,PACK,Check kabel & fungsi SS GUARD 505
+2025-02-21,2,Electrician shift 2,PACK,Cleaning Sensor bundle detector
+2025-02-21,3,Electrician shift 3,PACK,Check Sensor bundle detector
+2025-02-21,3,technician maker shift 3,MAKE,Replace Gerinda cut off
+2025-02-21,3,technician maker shift 3,MAKE,Replace Belt Max Fan
+2025-02-22,1,Electrician shift 1,PACK,Check sensor loose end
+2025-02-22,2,Electrician shift 2,PACK,Cleaning sensor loose end
+2025-02-22,3,Electrician shift 3,PACK,Check and cleaning sensor missing filter
+2025-02-22,3,technician packer shift 3,PACK,Replace Innerframe transveral Belt
+2025-02-22,3,technician packer shift 3,PACK,Replace Bearing pulley innerfame transve
+2025-02-22,1,technician maker shift 1,MAKE,Replace Belt Feed Roller
+2025-03-03,3,technician packer shift 3,PACK,Check Suction cups case erection
+2025-03-03,3,Electrician shift 3,PACK,Cleaning sensor innerframe
+2025-03-03,2,operator maker Shift 2,MAKE,Clening Filter cork drum (kuning)
+2025-03-03,1,Electrician shift 1,PACK,Check sensor innerliner pull sensor
+2025-03-03,2,Electrician shift 2,PACK,Cleaning sensor innerliner pull
+2025-03-04,1,Electrician shift 1,PACK,Check sensor inner frame
+2025-03-04,2,Electrician shift 2,PACK,Check sensor missing inner linner
+2025-03-04,3,Electrician shift 3,PACK,Cleaning sensor innerliner
+2025-03-04,1,operator packer  Shift 1,PACK,Check Selang Vaccum dan cleaning filter vacuum
+2025-03-04,3,operator packer  Shift 3,PACK,Check the oil level Blank unit 550.40.102/001
+2025-03-04,2,operator maker Shift 2,MAKE,Inspect sambungan belt kanan (filter feeder)
+2025-03-05,1,Electrician shift 1,PACK,Cleaning Sensor teartape
+2025-03-05,2,Electrician shift 2,PACK,Cleaning Sensor pack detector
+2025-03-05,3,Electrician shift 3,PACK,Check Sensor pack detector
+2025-03-05,2,operator packer  Shift 2,PACK,check freeplay bearing roller teartape
+2025-03-05,1,operator maker Shift 1 ,MAKE,Inspect sambungan belt kiri  ( filter feeder)
+2025-03-05,3,operator maker Shift 3,MAKE,Inspect temperature motor 1 (belt kanan ) filter feeder
+2025-03-06,1,technician packer shift 1,PACK,pengecheckan sambungan belt polychord exit 411
+2025-03-06,2,technician maker shift 2,MAKE,Inspect leaf spring dan cam follower agitator HCF
+2025-03-06,2,operator packer  Shift 2,PACK,Check freeplay bearings web tensioning arm film and teartape
+2025-03-06,3,Electrician shift 3,PACK,Cleaning Sensor teartape
+2025-03-06,2,Electrician shift 2,PACK,Cleaning Sensor pack detector
+2025-03-06,1,Electrician shift 1,PACK,Check Sensor pack detector
+2025-03-07,1,Electrician shift 1,PACK,Check Temperatur MAIN KABINET FOCKE 550
+2025-03-07,3,Electrician shift 3,PACK,Check kebersihan MAIN KABINET FOCKE 550
+2025-03-07,1,technician packer shift 1,PACK,Replace Self adhesive teartape bobbin belt
+2025-03-07,1,technician maker shift 1,MAKE,cleaning bagian dalam cut off (vaccum cleaner) dan kasih greasing
+2025-03-07,2,Electrician shift 2,MAKE,task MP&S monthly  pengecheckan ampere breaker motor  M15M
+2025-03-07,3,technician packer shift 3,PACK,pengecekan gap pinching dan cek qualitas rubber pinching
+2025-03-08,1,Electrician shift 1,PACK,Check Temperatur REAR KABINET FOCKE 550
+2025-03-08,2,Electrician shift 2,PACK,Check kebersihan REAR KABINET FOCKE 550
+2025-03-08,3,Electrician shift 3,PACK,Check Temperatur KABINET CIG HOPPER
+2025-03-08,3,technician packer shift 3,PACK,Check lugs (12) Cigarette track 550.13.002
+2025-03-10,1,Electrician shift 1,PACK,Check kebersihan KABINET CIG HOPPER
+2025-03-10,2,Electrician shift 2,PACK,Check Temperatur KABINET GLUE JET UNIT
+2025-03-10,3,Electrician shift 3,PACK,Check kebersihan KABINET GLUE JET UNIT
+2025-03-11,3,Electrician shift 3,PACK,Check kabel SS INFEED WRAPPER 751
+2025-03-11,1,Electrician shift 1,PACK,Check Temperatur KABINET LASER UNIT
+2025-03-11,2,Electrician shift 2,PACK,Check kebersihan KABINET LASER UNIT
+2025-03-12,1,Electrician shift 1,PACK,Check fungsi SS INFEED WRAPPER 751
+2025-03-12,2,Electrician shift 2,PACK,Check kabel SS GUARD 751
+2025-03-12,3,Electrician shift 3,PACK,Check fungsi SS INFEED WRAPPER 751
+2025-03-13,1,Electrician shift 1,PACK,Check kabel SS DISCHARGE 751
+2025-03-13,2,Electrician shift 2,PACK,Check fungsi SS INFEED WRAPPER 751
+2025-03-13,3,Electrician shift 3,PACK,Check kabel SS SHRINKING UNIT 751
+2025-03-14,1,Electrician shift 1,PACK,Check fungsi SS INFEED WRAPPER 751
+2025-03-14,2,Electrician shift 2,PACK,Check temp.motor INFEED BELT WRAPPER 751
+2025-03-14,3,Electrician shift 3,PACK,Check temp.motor CUTTING FILM 751
+2025-03-15,3,Electrician shift 3,PACK,Check temp.motor FILM BOBIN DRIVE RIGHT
+2025-03-15,1,Electrician shift 1,PACK,Check temp.motor TEARTAPE BOBIN DRIVE 75
+2025-03-15,2,Electrician shift 2,PACK,Check temp.motor FILM BOBIN DRIVE LEFT
+2025-03-17,3,Electrician shift 3,PACK,Check pergerakan motor web centering dev
+2025-03-17,1,Electrician shift 1,PACK,Check temp. motor MAIN DRIVE WRAPPER 751
+2025-03-17,2,Electrician shift 2,PACK,Check temp. motor SHRINKING HEATER DRIVE
+2025-03-18,1,Electrician shift 1,PACK,Check dust atau oil leakage motor
+2025-03-18,2,Electrician shift 2,PACK,Check sensor B24.0 Film bobbin end right
+2025-03-18,3,Electrician shift 3,PACK,Check sensor B24.1 Film bobbin end left
+2025-03-19,1,Electrician shift 1,PACK,Check sensor B36.4 Reject container full
+2025-03-19,2,Electrician shift 2,PACK,Check sensor B25. 0 Film detector left 7
+2025-03-19,3,Electrician shift 3,PACK,Check sensor B25.1 Film detector right 7
+2025-03-20,1,Electrician shift 1,PACK,Check sensor B36.2 Packet detector stack
+2025-03-20,2,Electrician shift 2,PACK,Check sensor B36.6 Packet detector eject
+2025-03-20,3,Electrician shift 3,PACK,Check sensor B36.7 Packet detector eject
+2025-03-21,1,Electrician shift 1,PACK,Check sensor B39.3 Film splicer left 751
+2025-03-21,2,Electrician shift 2,PACK,Check sensor B39.4 Film splicer right 75
+2025-03-21,3,Electrician shift 3,PACK,Check amplifier atau 3/4 putaran
+2025-03-22,3,Electrician shift 3,PACK,"Check tahanan socket, TURRET HEATER 2 75"
+2025-03-22,1,Electrician shift 1,PACK,Check tahanan socket TURRET HEATER 1 751
+2025-03-22,2,Electrician shift 2,PACK,Check kabel TURRET HEATER 1 751
+2025-04-03,nan,nan,MAKE,replace discharge belt atas dan bawah
+2025-05-05,nan,nan,MAKE,Replace Belt drive Knife Tobacco Rod Cut
+2025-06-05,nan,nan,MAKE,Replace  Belt drive Feed Roller 1
+nan,3,Electrician shift 3,PACK,Check fungsi DOOR VALVE 411
+nan,1,Electrician shift 1,PACK,Check kondisi heater tahanan socket
+nan,2,Electrician shift 2,PACK,Check kabel DOOR VALVE 411
+nan,2,Electrician shift 2,PACK,Check temperatur motor DISCHARGE BELT
+nan,3,Electrician shift 3,PACK,Check kabel UPPER GUARD 411
+nan,2,Electrician shift 2,PACK,Check fungsi GUARD RIGHT/LEFT 411
+nan,2,Electrician shift 2,PACK,Check kondisi kabel TURRET HEATER 411
+nan,1,Electrician shift 1,PACK,Check fungsi UPPER GUARD 411
+nan,3,Electrician shift 3,PACK,Check kondisi heate tahanan socket
+nan,1,Electrician shift 1,PACK,Check temperatur motor ELEVATOR UNIT
+nan,2,Electrician shift 2,PACK,Check kondisi sensor B7.7 Film detector
+nan,3,Electrician shift 3,PACK,Check amplifier belum mentok atau 3/4
+nan,1,Electrician shift 1,PACK,Check kondisi sensor B8.0 Film detector
+nan,2,Electrician shift 2,PACK,Check amplifier belum mentok atau 3/4
+nan,3,Electrician shift 3,PACK,Check temperatur motor INFEED BELT
+nan,1,Electrician shift 1,PACK,Check temperatur motor CUTTING FILM
+nan,2,Electrician shift 2,PACK,Check temperatur motor TEARTAPE BOBBIN
+nan,3,Electrician shift 3,PACK,Check temperatur motor MAIN DRIVE BELT
+nan,1,Electrician shift 1,PACK,Check kabel GUARD RIGHT/LEFT 411
+nan,1,Electrician shift 1,PACK,Check kondisi kabel NARROW HEATER  411
+nan,3,Electrician shift 3,PACK,Check fungsi INFEED BELT 411
+nan,2,Electrician shift 2,PACK,Check tahanan socket SEALING HEATER 751
+nan,1,Electrician shift 1,PACK,"Hambatan R: 10.5ohm, V: 380V, I: 2.5A"
+nan,2,technician maker shift 2,MAKE,Replace Bearing Garniture Adjuster
+nan,2,technician maker shift 2,MAKE,Replace Bearing Garniture base (8pcs)
+nan,2,technician maker shift 2,MAKE,Replace Bearing Garniture base (Garnitur
+nan,2,AWAN,PACK,Replace pocket turret 2 no.1 dan 3
+nan,1,AWAN,PACK,Replace gear unwinding roller film
+nan,1,operator maker Shift 1 ,MAKE,Kuras & Ganti Coolant | by Vendor Dikari
+nan,1,operator maker Shift 1 ,MAKE,Cleaning Filter Water Cooling| by Vendor
+nan,nan,"Heru, uut",PACK,peremajaan selang all wrapper
+nan,3,nan,PACK,Check kabel SS RESERVOIR UNIT (INFEED +
+nan,1,Electrician shift 1,PACK,pastikan amplifier belum mentok atau 3/4
+nan,1,Electrician shift 1,PACK,Check sensor teartape
+nan,1,Electrician shift 1,PACK,Check kabel TURRET HEATER 2 751
+nan,3,Electrician shift 3,PACK,Check kabel SEALING HEATER 751
+nan,1,Electrician shift 1,PACK,Check tahanan socket DISCHARGE HEATER 75
+nan,2,Electrician shift 2,PACK,Check kabel DISCHARGE HEATER 751
+nan,3,Electrician shift 3,PACK,Check tahanan socket SHRINKING HEATER 75
+nan,1,Electrician shift 1,PACK,Check kabel SHRINKING HEATER 751
+nan,2,Electrician shift 2,PACK,Check Tegangan
+nan,3,Electrician shift 3,PACK,Check hambatan di kontaktor
+nan,2,Electrician shift 2,PACK,Check kabel INFEED BELT 411
+nan,3,Electrician shift 3,PACK,Check dust atau oil leaakage
