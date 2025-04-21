@@ -1,0 +1,35 @@
+import os
+
+import pandas as pd
+
+from src.utils.helpers import get_script_folder
+
+columns = ["Shift 1", "Shift 2", "Shift 3"]
+data = [
+    ("3", "3", "3"),
+    ("65.0%", "69.2%", "77.5%"),
+    ("111", "117", "131"),
+    ("4.9%", "4.9%", "4.9%"),
+    ("26.0%", "21.8%", "13.5%"),
+    ("4.1%", "4.1%", "4.1%"),
+]
+
+
+def get_targets_file_path(lu):
+    script_folder = get_script_folder()
+    target_folder = os.path.join(script_folder, "Target")
+    if not os.path.exists(target_folder):
+        os.makedirs(target_folder)
+
+    filename = os.path.join(target_folder, f"target_{lu}.csv")
+    if not os.path.exists(filename):
+        df = pd.DataFrame(data, columns=columns)
+        df.to_csv(filename, index=False)
+
+    return filename
+
+
+def load_targets_df(filename=None):
+    """Memuat pengaturan dari file CSV"""
+
+    return pd.read_csv(filename)

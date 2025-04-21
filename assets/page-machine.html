@@ -1,0 +1,1125 @@
+
+<div  id='wait2' style='position:absolute; left:400px; top:200px; left:650px; width:200px; height:70px; z-index:30;display:none;'><center><img src='./wdab_images/wait.gif' style='position:relative;' /></center></div>
+<html xmlns:v="urn:schemas-microsoft-com:vml">
+
+
+<head>
+<LINK REL=stylesheet HREF="./wdab_css/aspdb.css" TYPE="text/css">
+<LINK REL=stylesheet HREF="./wdab_css/wdab_pmi.css" TYPE="text/css">
+<LINK REL=stylesheet HREF="./wdab_css/wdab_doc.css" TYPE="text/css">
+
+
+<style TYPE="text/css">
+BODY
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    FONT-FAMILY: Arial;	
+    MARGIN: 0px
+}
+	
+.TitleWhite
+{
+    COLOR: #ffffff;
+    FONT-SIZE: 12px;
+    FONT-STYLE: normal;
+    FONT-WEIGHT: bold
+}
+
+div.QI_frame{
+	position:absolute;
+	border-style:solid;	
+	border-width:0px;
+	border-top-style:dashed;
+	border-bottom-style:dashed;
+}
+
+
+div.QI_norm{
+	border-style:solid;	
+	border-width:0px;
+}
+
+div.QI_spread{
+	border-width:1px;
+	border-style:solid;	
+	border-color:gray;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	background-image:url(./wdab_images/dashedline.gif);	
+	border-top-style:dashed;
+	border-bottom-style:dashed
+}
+
+div.QI_CI{
+	border-width:1px;
+	border-style:solid;	
+	border-color:black;
+	border-top-width:0px;
+	border-bottom-width:0px;
+	background-image:url(./wdab_images/dashedblack.gif);	
+	border-top-style:dashed;
+	border-bottom-style:dashed;
+}
+
+.QI_DESC_NORM
+{
+	border-width:0;
+	font-size:9px;
+	color:#000000;	
+	background-color:transparent
+}
+
+.QI_DESC_ACTIVE
+{
+	border-width:0;
+	font-size:9px;
+	color:#0000FF;	
+	background-color:#FFFFCC	
+}
+
+A:hover
+{
+    BACKGROUND-COLOR:#ffeebb;COLOR: #000000
+}
+v\:* { behavior: url(#default#VML); }
+</style>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=windows-1252">
+<title>Primary Monitoring Analysis Tool</title>
+
+<!-- Custom header definitions -->
+<meta http-equiv="X-UA-compatible" content="IE=EmulateIE8">
+
+<link rel="shortcut icon" type="image/ico" href="./wdab_images/primat.ico">
+
+<style TYPE="text/css">
+BODY
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    FONT-FAMILY: Arial;	
+    MARGIN: 0px
+}
+</style>
+
+
+<script language="javaScript">
+
+</script>
+
+<body onbeforeunload="Show_Wait2()" bgcolor="#ffffff" text="#000000" topmargin="0" leftmargin="0" bgproperties="fixed"
+ LINK="#003399" VLINK="#003399" ALINK="#003399">
+
+
+
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" >
+			<tr>
+				<td bgcolor="#ffffff" width="100%">
+					<table  height="20" width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+						<tr>
+
+							<td bgcolor="#ffffff"  width="30" >
+							&nbsp;&nbsp;&nbsp;
+							</td>
+
+							<td bgcolor="#ffffff" width="100%" align=left valign="center" CLASS=doctoptitle>
+							Stop statistics per machine - SPA PRD
+							</td>
+							
+							<td bgcolor="#ffffff"  valign=center>
+							
+
+	<img border="0" src="./wdab_images/PMIE_text.gif" >&nbsp;&nbsp;&nbsp;
+
+
+							</td>
+							<td bgcolor="#ffffff"  nowrap valign=center>
+							
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td bgcolor="#ffffff" width="100%" background="./wdab_images/icon_strip.jpg" height="8">
+				</td>
+			</tr>
+			<tr>
+				<td width="100%" height="2">
+				</td>
+			</tr>
+		</table>
+
+		<script language="JavaScript">
+			// Change the title of the current document
+			document.title = "Stop statistics per machine (Primary Monitoring Analysis Tool)" ;
+		</script>
+
+
+<table cellpadding=0 cellspacing=0 border=0 width='100%' ><tr><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='http://ots.app.pmi/db.aspx?table=asp_DocOut&act=query&db_pkIdentifier=SPA_root'  >SPA </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_Line_Status&eoa=x'  >Roll-out status </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_Line_Overview&eoa=x'  >Lines </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_LiveCockpit&eoa=x&act=query&db_Line=ID01-SE-CP-L027'  >Life </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_ShiftPO_Overview&eoa=x&act=query&db_Line=ID01-SE-CP-L027'  >Shifts </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_Segment_Overview&eoa=x&act=query&db_Line=ID01-SE-CP-L027'  >Days </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_Week_Overview&eoa=x&act=query&db_Line=ID01-SE-CP-L027'  >Weeks </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_Month_Overview&eoa=x&act=query&db_Line=ID01-SE-CP-L027'  >Months </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_NormPeriodLossTree&act=query&db_Normalize=0&db_Language=OEM&eoa=x&db_Line=ID01-SE-CP-L027&db_SegmentDateMin=2025-01-05&db_ShiftStart=2&db_ShiftEnd=2'  >Loss tree </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_NormPeriodLossTree&act=query&db_Normalize=0&db_Language=Local&eoa=x&db_Line=ID01-SE-CP-L027&db_SegmentDateMin=2025-01-05&db_ShiftStart=2&db_ShiftEnd=2'  >in local language </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_NormPeriodLossTree&act=query&db_Normalize=1&eoa=x&db_Line=ID01-SE-CP-L027&db_SegmentDateMin=2025-01-05&db_ShiftStart=2&db_ShiftEnd=2'  >Normalized Loss tree </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=SPA_NormPeriodLossTree&act=enterquery&eoa=x&db_Line=ID01-SE-CP-L027&db_SegmentDateMin=2025-01-05&db_ShiftStart=2&db_ShiftEnd=2'  >Loss tree query </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitabactive nowrap><a class=naviactive href='db.aspx?table=sp_PeriodEquipmentData&act=query&eoa=x&db_Line=ID01-SE-CP-L027&db_SegmentDateMin=2025-01-05&db_ShiftStart=2&db_ShiftEnd=2'  >Stop per machine </a><br></td><td class=navitabspc>&nbsp;</td><td class=navitablink nowrap><a class=link href='db.aspx?table=sp_PeriodEquipmentData&act=enterquery&eoa=x&db_Line=ID01-SE-CP-L027&db_SegmentDateMin=2025-01-05&db_ShiftStart=2&db_ShiftEnd=2'  >Stops per machine query </a><br></td><td class=navitabspc>&nbsp;</td><td width='100%' bgcolor='#999999' ></td></tr></table>
+<table width=400 cellspacing=5 cellpadding=2>
+<tr>
+<td class=docitem>Factory:</td>
+<td class=doctext>Karawang PMID</td>
+<td class=docitem>Line:</td>
+<td class=doctext>Link-up 27&nbsp;&nbsp;</td>
+</tr><tr>
+<td class=docitem>Design speed</td>
+<td class=doctext>10000</td>
+<td class=docitem>Target speed:</td>
+<td class=doctext>8400</td>
+</tr><tr>
+<td class=docitem>Time period:</td>
+<td class=doctext colspan=3>2025-01-05 14:00 to 2025-01-05 20:36</td>
+</tr>
+<tr>
+</table>
+<table cellspacing=0 cellpadding=2>
+<tr><td><table><TR><TD><table>
+</table></td></tr></table></td>
+<td class=doctext style="back-ground:yellow">
+ <table cellspacing=0 cellpadding=2>
+  <tr>
+   <td class=doctableheader colspan=5>ID01-SE-CP-L027-MAKE</td>
+  </tr><tr>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+   <td class=docitem>Maker</td>
+   <td class=doctext colspan=2>Hauni PROTOS PM 100</td>
+   <td class=doctext></td>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+ </tr><tr>
+   <td class=docitem>Total downtime</td>
+   <td class=docright>80.067</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Total stops</td>
+   <td class=docright>23</td>
+   <td class=doctext>stops</td>
+ </tr><tr>
+   <td class=docitem>Total run time</td>
+   <td class=docright>316</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Avg. speed</td>
+   <td class=docright>8316</td>
+   <td class=doctext>cig./min</td>
+ </tr><tr>
+   <td class=docitem>Production</td>
+   <td class=docright>2.632 Mio</td>
+   <td class=doctext>cig.</td>
+ </tr><tr>
+   <td class=docitem>Total rejects</td>
+   <td class=docright>0.75</td>
+   <td class=doctext>%</td>
+ </tr><tr>
+   <td class=docitem>MTBF:</td>
+   <td class=docright>13.8</td>
+   <td class=doctext>min</td>
+  </tr><tr>
+   <td class=docitem>MTTR</td>
+   <td class=docright>3.5</td>
+   <td class=doctext>min</td>
+  </TR><tr>
+   <td class=doctext colspan=3>
+    <table cellspacing=0 cellpadding=1>
+    <tr>
+    <td class=doctableheader>Description</td>
+    <td class=doctableheader width=30>Stops</td>
+    <td class=doctableheader width=30>DT [min]</td>
+    <td class=doctableheader width=30>OEE [%]</td>
+    <td class=doctableheader width=40>Rejects [%]</td>
+    <td class=doctableheader colspan=3 >Stops per shift</td>
+    <td class=doctableheader>&nbsp;</td>
+   </tr>
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv1DescriptionLT' OnClick="if (dv1DescriptionLT.style.overflow=='hidden'){dv1DescriptionLT.style.overflow='';dv1DescriptionLT.noWrap=false;}else{dv1DescriptionLT.style.overflow='hidden';;dv1DescriptionLT.noWrap=true;}" >MAX roll. block jam</div></td>
+            <td class=doctabletext>9</td>
+            <td class=doctabletext>14.0</td>
+            <td class=doctabletext>3.53</td>
+            <td class=doctabletext>0.010</td>
+            <td class=doccenter></td>
+            <td class=doccenter>9</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv2DescriptionLT' OnClick="if (dv2DescriptionLT.style.overflow=='hidden'){dv2DescriptionLT.style.overflow='';dv2DescriptionLT.noWrap=false;}else{dv2DescriptionLT.style.overflow='hidden';;dv2DescriptionLT.noWrap=true;}" >MAX turn. drum jam</div></td>
+            <td class=doctabletext>7</td>
+            <td class=doctabletext>13.8</td>
+            <td class=doctabletext>3.49</td>
+            <td class=doctabletext>0.007</td>
+            <td class=doccenter></td>
+            <td class=doccenter>7</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv3DescriptionLT' OnClick="if (dv3DescriptionLT.style.overflow=='hidden'){dv3DescriptionLT.style.overflow='';dv3DescriptionLT.noWrap=false;}else{dv3DescriptionLT.style.overflow='hidden';;dv3DescriptionLT.noWrap=true;}" >SE rod break</div></td>
+            <td class=doctabletext>4</td>
+            <td class=doctabletext>8.7</td>
+            <td class=doctabletext>2.19</td>
+            <td class=doctabletext>0.018</td>
+            <td class=doccenter></td>
+            <td class=doccenter>4</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv4DescriptionLT' OnClick="if (dv4DescriptionLT.style.overflow=='hidden'){dv4DescriptionLT.style.overflow='';dv4DescriptionLT.noWrap=false;}else{dv4DescriptionLT.style.overflow='hidden';;dv4DescriptionLT.noWrap=true;}" >No speed</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>4.0</td>
+            <td class=doctabletext>1.01</td>
+            <td class=doctabletext>0.020</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink><img title="Unknown stop origin" src="./wdab_images/question.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv5DescriptionLT' OnClick="if (dv5DescriptionLT.style.overflow=='hidden'){dv5DescriptionLT.style.overflow='';dv5DescriptionLT.noWrap=false;}else{dv5DescriptionLT.style.overflow='hidden';;dv5DescriptionLT.noWrap=true;}" >MAX tipping break</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>3.3</td>
+            <td class=doctabletext>0.841</td>
+            <td class=doctabletext>0.001</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv6DescriptionLT' OnClick="if (dv6DescriptionLT.style.overflow=='hidden'){dv6DescriptionLT.style.overflow='';dv6DescriptionLT.noWrap=false;}else{dv6DescriptionLT.style.overflow='hidden';;dv6DescriptionLT.noWrap=true;}" >MAX filter rod monitor top</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.3</td>
+            <td class=doctabletext>0.336</td>
+            <td class=doctabletext>0.004</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+</table></td></tr></table></td>
+<td class=doctext style="back-ground:yellow">
+ <table cellspacing=0 cellpadding=2>
+  <tr>
+   <td class=doctableheader colspan=5>ID01-SE-CP-L027-PACK</td>
+  </tr><tr>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+   <td class=docitem>Packer</td>
+   <td class=doctext colspan=2>Focke 550 (F5)</td>
+   <td class=doctext></td>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+ </tr><tr>
+   <td class=docitem>Total downtime</td>
+   <td class=docright>63.200</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Total stops</td>
+   <td class=docright>12</td>
+   <td class=doctext>stops</td>
+ </tr><tr>
+   <td class=docitem>Total run time</td>
+   <td class=docright>333</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Avg. speed</td>
+   <td class=docright>7948</td>
+   <td class=doctext>cig./min</td>
+ </tr><tr>
+   <td class=docitem>Production</td>
+   <td class=docright>2.649 Mio</td>
+   <td class=doctext>cig.</td>
+ </tr><tr>
+   <td class=docitem>Total rejects</td>
+   <td class=docright>0.17</td>
+   <td class=doctext>%</td>
+ </tr><tr>
+   <td class=docitem>MTBF:</td>
+   <td class=docright>27.8</td>
+   <td class=doctext>min</td>
+  </tr><tr>
+   <td class=docitem>MTTR</td>
+   <td class=docright>5.3</td>
+   <td class=doctext>min</td>
+  </TR><tr>
+   <td class=doctext colspan=3>
+    <table cellspacing=0 cellpadding=1>
+    <tr>
+    <td class=doctableheader>Description</td>
+    <td class=doctableheader width=30>Stops</td>
+    <td class=doctableheader width=30>DT [min]</td>
+    <td class=doctableheader width=30>OEE [%]</td>
+    <td class=doctableheader width=40>Rejects [%]</td>
+    <td class=doctableheader colspan=3 >Stops per shift</td>
+    <td class=doctableheader>&nbsp;</td>
+   </tr>
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv7DescriptionLT' OnClick="if (dv7DescriptionLT.style.overflow=='hidden'){dv7DescriptionLT.style.overflow='';dv7DescriptionLT.noWrap=false;}else{dv7DescriptionLT.style.overflow='hidden';;dv7DescriptionLT.noWrap=true;}" >S BLANK MISSING IN TURRET</div></td>
+            <td class=doctabletext>2</td>
+            <td class=doctabletext>3.8</td>
+            <td class=doctabletext>0.946</td>
+            <td class=doctabletext>0.010</td>
+            <td class=doccenter></td>
+            <td class=doccenter>2</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv8DescriptionLT' OnClick="if (dv8DescriptionLT.style.overflow=='hidden'){dv8DescriptionLT.style.overflow='';dv8DescriptionLT.noWrap=false;}else{dv8DescriptionLT.style.overflow='hidden';;dv8DescriptionLT.noWrap=true;}" >PACKET GUIDE, PACKET TRACK</div></td>
+            <td class=doctabletext>2</td>
+            <td class=doctabletext>1.7</td>
+            <td class=doctabletext>0.420</td>
+            <td class=doctabletext>0.002</td>
+            <td class=doccenter></td>
+            <td class=doccenter>2</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv9DescriptionLT' OnClick="if (dv9DescriptionLT.style.overflow=='hidden'){dv9DescriptionLT.style.overflow='';dv9DescriptionLT.noWrap=false;}else{dv9DescriptionLT.style.overflow='hidden';;dv9DescriptionLT.noWrap=true;}" >No speed</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>12.7</td>
+            <td class=doctabletext>3.20</td>
+            <td class=doctabletext>0.007</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink><img title="Unknown stop origin" src="./wdab_images/question.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv10DescriptionLT' OnClick="if (dv10DescriptionLT.style.overflow=='hidden'){dv10DescriptionLT.style.overflow='';dv10DescriptionLT.noWrap=false;}else{dv10DescriptionLT.style.overflow='hidden';;dv10DescriptionLT.noWrap=true;}" >FOIL BREAK, TENSIONING ARM</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>3.8</td>
+            <td class=doctabletext>0.963</td>
+            <td class=doctabletext>0.006</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv11DescriptionLT' OnClick="if (dv11DescriptionLT.style.overflow=='hidden'){dv11DescriptionLT.style.overflow='';dv11DescriptionLT.noWrap=false;}else{dv11DescriptionLT.style.overflow='hidden';;dv11DescriptionLT.noWrap=true;}" >INNER FRAME IN BENDING STATION</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>3.4</td>
+            <td class=doctabletext>0.845</td>
+            <td class=doctabletext>0.001</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv12DescriptionLT' OnClick="if (dv12DescriptionLT.style.overflow=='hidden'){dv12DescriptionLT.style.overflow='';dv12DescriptionLT.noWrap=false;}else{dv12DescriptionLT.style.overflow='hidden';;dv12DescriptionLT.noWrap=true;}" >FOLDING GUIDE 1</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.9</td>
+            <td class=doctabletext>0.467</td>
+            <td class=doctabletext>0.006</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv13DescriptionLT' OnClick="if (dv13DescriptionLT.style.overflow=='hidden'){dv13DescriptionLT.style.overflow='';dv13DescriptionLT.noWrap=false;}else{dv13DescriptionLT.style.overflow='hidden';;dv13DescriptionLT.noWrap=true;}" >TRANSVERSE DISCHARGE (AXIS 1) OPEN</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.3</td>
+            <td class=doctabletext>0.336</td>
+            <td class=doctabletext>0.002</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv14DescriptionLT' OnClick="if (dv14DescriptionLT.style.overflow=='hidden'){dv14DescriptionLT.style.overflow='';dv14DescriptionLT.noWrap=false;}else{dv14DescriptionLT.style.overflow='hidden';;dv14DescriptionLT.noWrap=true;}" >TURRET COVER, RIGHT</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.2</td>
+            <td class=doctabletext>0.307</td>
+            <td class=doctabletext>0.005</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv15DescriptionLT' OnClick="if (dv15DescriptionLT.style.overflow=='hidden'){dv15DescriptionLT.style.overflow='';dv15DescriptionLT.noWrap=false;}else{dv15DescriptionLT.style.overflow='hidden';;dv15DescriptionLT.noWrap=true;}" >STATUS UNKNOWN</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.0</td>
+            <td class=doctabletext>0.248</td>
+            <td class=doctabletext>0.013</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv16DescriptionLT' OnClick="if (dv16DescriptionLT.style.overflow=='hidden'){dv16DescriptionLT.style.overflow='';dv16DescriptionLT.noWrap=false;}else{dv16DescriptionLT.style.overflow='hidden';;dv16DescriptionLT.noWrap=true;}" >CIG. VANES EMPTY</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.0</td>
+            <td class=doctabletext>0.248</td>
+            <td class=doctabletext>0.002</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+</table></td></tr></table></td>
+<td class=doctext style="back-ground:yellow">
+ <table cellspacing=0 cellpadding=2>
+  <tr>
+   <td class=doctableheader colspan=5>ID01-SE-CP-L027-BUFB</td>
+  </tr><tr>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+   <td class=docitem>Pack Buffer</td>
+   <td class=doctext colspan=2>Focke 741</td>
+   <td class=doctext></td>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+ </tr><tr>
+   <td class=docitem>Total downtime</td>
+   <td class=docright>334.550</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Total stops</td>
+   <td class=docright>9</td>
+   <td class=doctext>stops</td>
+ </tr><tr>
+   <td class=docitem>Total run time</td>
+   <td class=docright>62</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Avg. speed</td>
+   <td class=docright>0</td>
+   <td class=doctext>cig./min</td>
+ </tr><tr>
+   <td class=docitem>Production</td>
+   <td class=docright></td>
+   <td class=doctext>cig.</td>
+ </tr><tr>
+   <td class=docitem>Total rejects</td>
+   <td class=docright></td>
+   <td class=doctext>%</td>
+ </tr><tr>
+   <td class=docitem>MTBF:</td>
+   <td class=docright>6.88</td>
+   <td class=doctext>min</td>
+  </tr><tr>
+   <td class=docitem>MTTR</td>
+   <td class=docright>37.2</td>
+   <td class=doctext>min</td>
+  </TR><tr>
+   <td class=doctext colspan=3>
+    <table cellspacing=0 cellpadding=1>
+    <tr>
+    <td class=doctableheader>Description</td>
+    <td class=doctableheader width=30>Stops</td>
+    <td class=doctableheader width=30>DT [min]</td>
+    <td class=doctableheader width=30>OEE [%]</td>
+    <td class=doctableheader width=40>Rejects [%]</td>
+    <td class=doctableheader colspan=3 >Stops per shift</td>
+    <td class=doctableheader>&nbsp;</td>
+   </tr>
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv17DescriptionLT' OnClick="if (dv17DescriptionLT.style.overflow=='hidden'){dv17DescriptionLT.style.overflow='';dv17DescriptionLT.noWrap=false;}else{dv17DescriptionLT.style.overflow='hidden';;dv17DescriptionLT.noWrap=true;}" >STANDBY 0 percent</div></td>
+            <td class=doctabletext>9</td>
+            <td class=doctabletext>302.8</td>
+            <td class=doctabletext>76.4</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>9</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink> <img title="No product" src="./wdab_images/previous.jpg" align=absmiddle border=0>
+</a></td>
+</tr>
+
+</table></td></tr></table></td>
+<td class=doctext style="back-ground:yellow">
+ <table cellspacing=0 cellpadding=2>
+  <tr>
+   <td class=doctableheader colspan=5>ID01-SE-CP-L027-WRAP</td>
+  </tr><tr>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+   <td class=docitem>Wrapper</td>
+   <td class=doctext colspan=2>Focke 751</td>
+   <td class=doctext></td>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+ </tr><tr>
+   <td class=docitem>Total downtime</td>
+   <td class=docright>60.183</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Total stops</td>
+   <td class=docright>16</td>
+   <td class=doctext>stops</td>
+ </tr><tr>
+   <td class=docitem>Total run time</td>
+   <td class=docright>336</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Avg. speed</td>
+   <td class=docright>7884</td>
+   <td class=doctext>cig./min</td>
+ </tr><tr>
+   <td class=docitem>Production</td>
+   <td class=docright>2.652 Mio</td>
+   <td class=doctext>cig.</td>
+ </tr><tr>
+   <td class=docitem>Total rejects</td>
+   <td class=docright>0.03</td>
+   <td class=doctext>%</td>
+ </tr><tr>
+   <td class=docitem>MTBF:</td>
+   <td class=docright>21.0</td>
+   <td class=doctext>min</td>
+  </tr><tr>
+   <td class=docitem>MTTR</td>
+   <td class=docright>3.8</td>
+   <td class=doctext>min</td>
+  </TR><tr>
+   <td class=doctext colspan=3>
+    <table cellspacing=0 cellpadding=1>
+    <tr>
+    <td class=doctableheader>Description</td>
+    <td class=doctableheader width=30>Stops</td>
+    <td class=doctableheader width=30>DT [min]</td>
+    <td class=doctableheader width=30>OEE [%]</td>
+    <td class=doctableheader width=40>Rejects [%]</td>
+    <td class=doctableheader colspan=3 >Stops per shift</td>
+    <td class=doctableheader>&nbsp;</td>
+   </tr>
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv18DescriptionLT' OnClick="if (dv18DescriptionLT.style.overflow=='hidden'){dv18DescriptionLT.style.overflow='';dv18DescriptionLT.noWrap=false;}else{dv18DescriptionLT.style.overflow='hidden';;dv18DescriptionLT.noWrap=true;}" >UPSTREAM MACHINE</div></td>
+            <td class=doctabletext>8</td>
+            <td class=doctabletext>18.4</td>
+            <td class=doctabletext>4.64</td>
+            <td class=doctabletext>0.011</td>
+            <td class=doccenter></td>
+            <td class=doccenter>8</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv19DescriptionLT' OnClick="if (dv19DescriptionLT.style.overflow=='hidden'){dv19DescriptionLT.style.overflow='';dv19DescriptionLT.noWrap=false;}else{dv19DescriptionLT.style.overflow='hidden';;dv19DescriptionLT.noWrap=true;}" >DOWNSTREAM MACHINE</div></td>
+            <td class=doctabletext>3</td>
+            <td class=doctabletext>4.5</td>
+            <td class=doctabletext>1.13</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>3</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>   <img title="Blockage" src="./wdab_images/next.jpg" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv20DescriptionLT' OnClick="if (dv20DescriptionLT.style.overflow=='hidden'){dv20DescriptionLT.style.overflow='';dv20DescriptionLT.noWrap=false;}else{dv20DescriptionLT.style.overflow='hidden';;dv20DescriptionLT.noWrap=true;}" >STANDBY</div></td>
+            <td class=doctabletext>2</td>
+            <td class=doctabletext>1.2</td>
+            <td class=doctabletext>0.298</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>2</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv21DescriptionLT' OnClick="if (dv21DescriptionLT.style.overflow=='hidden'){dv21DescriptionLT.style.overflow='';dv21DescriptionLT.noWrap=false;}else{dv21DescriptionLT.style.overflow='hidden';;dv21DescriptionLT.noWrap=true;}" >LIFTER, DISCHARGE</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>2.0</td>
+            <td class=doctabletext>0.504</td>
+            <td class=doctabletext>0.020</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv22DescriptionLT' OnClick="if (dv22DescriptionLT.style.overflow=='hidden'){dv22DescriptionLT.style.overflow='';dv22DescriptionLT.noWrap=false;}else{dv22DescriptionLT.style.overflow='hidden';;dv22DescriptionLT.noWrap=true;}" >FILM DETECTOR, LEFT AND RIGHT</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.5</td>
+            <td class=doctabletext>0.378</td>
+            <td class=doctabletext>0.006</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv23DescriptionLT' OnClick="if (dv23DescriptionLT.style.overflow=='hidden'){dv23DescriptionLT.style.overflow='';dv23DescriptionLT.noWrap=false;}else{dv23DescriptionLT.style.overflow='hidden';;dv23DescriptionLT.noWrap=true;}" >No speed</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>0.3</td>
+            <td class=doctabletext>0.084</td>
+            <td class=doctabletext>0.005</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink><img title="Unknown stop origin" src="./wdab_images/question.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+</table></td></tr></table></td>
+<td class=doctext style="back-ground:yellow">
+ <table cellspacing=0 cellpadding=2>
+  <tr>
+   <td class=doctableheader colspan=5>ID01-SE-CP-L027-BNDL</td>
+  </tr><tr>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+   <td class=docitem>Bundler</td>
+   <td class=doctext colspan=2>Focke 411</td>
+   <td class=doctext></td>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+ </tr><tr>
+   <td class=docitem>Total downtime</td>
+   <td class=docright>74.767</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Total stops</td>
+   <td class=docright>13</td>
+   <td class=doctext>stops</td>
+ </tr><tr>
+   <td class=docitem>Total run time</td>
+   <td class=docright>322</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Avg. speed</td>
+   <td class=docright>8257</td>
+   <td class=doctext>cig./min</td>
+ </tr><tr>
+   <td class=docitem>Production</td>
+   <td class=docright>2.657 Mio</td>
+   <td class=doctext>cig.</td>
+ </tr><tr>
+   <td class=docitem>Total rejects</td>
+   <td class=docright>0.05</td>
+   <td class=doctext>%</td>
+ </tr><tr>
+   <td class=docitem>MTBF:</td>
+   <td class=docright>24.7</td>
+   <td class=doctext>min</td>
+  </tr><tr>
+   <td class=docitem>MTTR</td>
+   <td class=docright>5.8</td>
+   <td class=doctext>min</td>
+  </TR><tr>
+   <td class=doctext colspan=3>
+    <table cellspacing=0 cellpadding=1>
+    <tr>
+    <td class=doctableheader>Description</td>
+    <td class=doctableheader width=30>Stops</td>
+    <td class=doctableheader width=30>DT [min]</td>
+    <td class=doctableheader width=30>OEE [%]</td>
+    <td class=doctableheader width=40>Rejects [%]</td>
+    <td class=doctableheader colspan=3 >Stops per shift</td>
+    <td class=doctableheader>&nbsp;</td>
+   </tr>
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv24DescriptionLT' OnClick="if (dv24DescriptionLT.style.overflow=='hidden'){dv24DescriptionLT.style.overflow='';dv24DescriptionLT.noWrap=false;}else{dv24DescriptionLT.style.overflow='hidden';;dv24DescriptionLT.noWrap=true;}" >UPSTREAM MACHINE</div></td>
+            <td class=doctabletext>6</td>
+            <td class=doctabletext>12.7</td>
+            <td class=doctabletext>3.19</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>6</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv25DescriptionLT' OnClick="if (dv25DescriptionLT.style.overflow=='hidden'){dv25DescriptionLT.style.overflow='';dv25DescriptionLT.noWrap=false;}else{dv25DescriptionLT.style.overflow='hidden';;dv25DescriptionLT.noWrap=true;}" >STANDBY</div></td>
+            <td class=doctabletext>5</td>
+            <td class=doctabletext>26.0</td>
+            <td class=doctabletext>6.56</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>5</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv26DescriptionLT' OnClick="if (dv26DescriptionLT.style.overflow=='hidden'){dv26DescriptionLT.style.overflow='';dv26DescriptionLT.noWrap=false;}else{dv26DescriptionLT.style.overflow='hidden';;dv26DescriptionLT.noWrap=true;}" >STOP BUTTON</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>2.0</td>
+            <td class=doctabletext>0.500</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv27DescriptionLT' OnClick="if (dv27DescriptionLT.style.overflow=='hidden'){dv27DescriptionLT.style.overflow='';dv27DescriptionLT.noWrap=false;}else{dv27DescriptionLT.style.overflow='hidden';;dv27DescriptionLT.noWrap=true;}" >BACK-UP IN DISCHARGE 2</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.2</td>
+            <td class=doctabletext>0.307</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+</table></td></tr></table></td>
+<td class=doctext style="back-ground:yellow">
+ <table cellspacing=0 cellpadding=2>
+  <tr>
+   <td class=doctableheader colspan=5>ID01-SE-CP-L027-CASE</td>
+  </tr><tr>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+   <td class=docitem>Case packer</td>
+   <td class=doctext colspan=2>Focke 487</td>
+   <td class=doctext></td>
+  <TD rowspan=10 STYLE="background-color:#CCCCCC">&nbsp;</td>
+ </tr><tr>
+   <td class=docitem>Total downtime</td>
+   <td class=docright>57.033</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Total stops</td>
+   <td class=docright>17</td>
+   <td class=doctext>stops</td>
+ </tr><tr>
+   <td class=docitem>Total run time</td>
+   <td class=docright>339</td>
+   <td class=doctext>min</td>
+ </tr><tr>
+   <td class=docitem>Avg. speed</td>
+   <td class=docright>7747</td>
+   <td class=doctext>cig./min</td>
+ </tr><tr>
+   <td class=docitem>Production</td>
+   <td class=docright>2.63 Mio</td>
+   <td class=doctext>cig.</td>
+ </tr><tr>
+   <td class=docitem>Total rejects</td>
+   <td class=docright>1.13</td>
+   <td class=doctext>%</td>
+ </tr><tr>
+   <td class=docitem>MTBF:</td>
+   <td class=docright>20.0</td>
+   <td class=doctext>min</td>
+  </tr><tr>
+   <td class=docitem>MTTR</td>
+   <td class=docright>3.4</td>
+   <td class=doctext>min</td>
+  </TR><tr>
+   <td class=doctext colspan=3>
+    <table cellspacing=0 cellpadding=1>
+    <tr>
+    <td class=doctableheader>Description</td>
+    <td class=doctableheader width=30>Stops</td>
+    <td class=doctableheader width=30>DT [min]</td>
+    <td class=doctableheader width=30>OEE [%]</td>
+    <td class=doctableheader width=40>Rejects [%]</td>
+    <td class=doctableheader colspan=3 >Stops per shift</td>
+    <td class=doctableheader>&nbsp;</td>
+   </tr>
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv28DescriptionLT' OnClick="if (dv28DescriptionLT.style.overflow=='hidden'){dv28DescriptionLT.style.overflow='';dv28DescriptionLT.noWrap=false;}else{dv28DescriptionLT.style.overflow='hidden';;dv28DescriptionLT.noWrap=true;}" >STANDBY</div></td>
+            <td class=doctabletext>6</td>
+            <td class=doctabletext>12.3</td>
+            <td class=doctabletext>3.11</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>6</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink><img title="Unknown stop origin" src="./wdab_images/question.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv29DescriptionLT' OnClick="if (dv29DescriptionLT.style.overflow=='hidden'){dv29DescriptionLT.style.overflow='';dv29DescriptionLT.noWrap=false;}else{dv29DescriptionLT.style.overflow='hidden';;dv29DescriptionLT.noWrap=true;}" >REMOVE WASTE CASE FROM DISCHARGE</div></td>
+            <td class=doctabletext>3</td>
+            <td class=doctabletext>2.0</td>
+            <td class=doctabletext>0.496</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>3</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv30DescriptionLT' OnClick="if (dv30DescriptionLT.style.overflow=='hidden'){dv30DescriptionLT.style.overflow='';dv30DescriptionLT.noWrap=false;}else{dv30DescriptionLT.style.overflow='hidden';;dv30DescriptionLT.noWrap=true;}" >DOOR OPEN S 20.5</div></td>
+            <td class=doctabletext>2</td>
+            <td class=doctabletext>1.2</td>
+            <td class=doctabletext>0.303</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>2</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv31DescriptionLT' OnClick="if (dv31DescriptionLT.style.overflow=='hidden'){dv31DescriptionLT.style.overflow='';dv31DescriptionLT.noWrap=false;}else{dv31DescriptionLT.style.overflow='hidden';;dv31DescriptionLT.noWrap=true;}" >No volume</div></td>
+            <td class=doctabletext>2</td>
+            <td class=doctabletext>0.7</td>
+            <td class=doctabletext>0.168</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>2</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink><img title="Unknown stop origin" src="./wdab_images/question.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv32DescriptionLT' OnClick="if (dv32DescriptionLT.style.overflow=='hidden'){dv32DescriptionLT.style.overflow='';dv32DescriptionLT.noWrap=false;}else{dv32DescriptionLT.style.overflow='hidden';;dv32DescriptionLT.noWrap=true;}" >PARCEL LABELLER NOT IN POSITION</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.9</td>
+            <td class=doctabletext>0.479</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv33DescriptionLT' OnClick="if (dv33DescriptionLT.style.overflow=='hidden'){dv33DescriptionLT.style.overflow='';dv33DescriptionLT.noWrap=false;}else{dv33DescriptionLT.style.overflow='hidden';;dv33DescriptionLT.noWrap=true;}" >STOP BUTTON PRESSED</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>1.3</td>
+            <td class=doctabletext>0.332</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv34DescriptionLT' OnClick="if (dv34DescriptionLT.style.overflow=='hidden'){dv34DescriptionLT.style.overflow='';dv34DescriptionLT.noWrap=false;}else{dv34DescriptionLT.style.overflow='hidden';;dv34DescriptionLT.noWrap=true;}" >DOWNSTREAM MACHINE</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>0.5</td>
+            <td class=doctabletext>0.130</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>   <img title="Blockage" src="./wdab_images/next.jpg" align=absmiddle border=0>
+</a></td>
+</tr>
+
+
+
+<tr cellspacing=0 cellpadding=2 >
+            <td class=doctext><div nowrap  style='overflow:hidden;width:100px'  id='dv35DescriptionLT' OnClick="if (dv35DescriptionLT.style.overflow=='hidden'){dv35DescriptionLT.style.overflow='';dv35DescriptionLT.noWrap=false;}else{dv35DescriptionLT.style.overflow='hidden';;dv35DescriptionLT.noWrap=true;}" >CBL PRINTER FAULT</div></td>
+            <td class=doctabletext>1</td>
+            <td class=doctabletext>0.3</td>
+            <td class=doctabletext>0.084</td>
+            <td class=doctabletext>0</td>
+            <td class=doccenter></td>
+            <td class=doccenter>1</td>
+            <td class=doccenter></td>
+            <td class=doctext > <a href="" title="Show trend over time" class=doclink>    <img title="Failure" src="./wdab_images/OT.gif" align=absmiddle border=0>
+</a></td>
+</tr>
+</table><iframe style="Display:none" name="if1" id="if1" border="1" src='WebDAB/html/blank.html' ></iframe>
+
+<script language="JavaScript">
+
+
+
+function refresh_form(){
+document.query0.action='?table=sp_PeriodEquipmentData&act=query&eoa=x&db_Line=ID01-SE-CP-L027&db_SegmentDateMin=2025-01-05&db_ShiftStart=2&db_ShiftEnd=2'
+document.query0.submit()
+}
+</script>
+
+
+<script type="text/javascript" language="javascript">
+//Rabi updated source code on 6th-Dec-2017 in .vb file this only for check latest source code .
+ function Show_Wait2()
+    {
+        var elem = document.getElementById("wait2");
+        if (elem)
+        {
+            elem.style.display = '';
+        }
+    }
+
+//    function HideWait()
+//    {
+//    var elem = document.getElementById("mydiv");
+//    if (elem)
+//        {
+//            mydiv.style.visibility = 'hidden';
+//            window.clearInterval(1000);
+//        }
+//    }
+
+    function UpdateDiv(divname, imgname, url) {
+        if (divname.style.display == '') {
+            divname.style.display = 'None';
+            if (imgname.src.substr(imgname.src.length - 6) == 'lk.gif') {
+                imgname.src = "./wdab_images/plk.gif";
+            }
+            else {
+                imgname.src = "./wdab_images/p.gif";
+            }
+        }
+        else {
+            divname.style.display = '';
+            if (imgname.src.substr(imgname.src.length - 6) == 'lk.gif') {
+                imgname.src = "./wdab_images/mlk.gif";
+            }
+            else {
+                imgname.src = "./wdab_images/m.gif";
+            }
+            if ((!divname.isloaded || window.event.shiftKey) && url != '' && url.substr(0, 1) != '&') {
+                divname.innerHTML = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<FONT color=gray>Loading data...</FONT>";
+                var now = new Date();
+                if (url.search(/\?/) == -1) {
+                    document.all.if1.src = url + '?ts=' + now.getTime();
+                }
+                else {
+                    document.all.if1.src = url + '&ts=' + now.getTime();
+                }
+            }
+
+            else if (divname.innerHTML.replace(/\w/, '') == '') {
+                if (imgname.src.substr(imgname.src.length - 6) == 'lk.gif') {
+                    imgname.src = "./wdab_images/link.gif";
+                }
+                else {
+                    imgname.src = "./wdab_images/trans.gif";
+                }
+            }
+        }
+    }
+
+    function updateparent()
+        {
+        try
+        {
+            if (parent.div)
+            {
+                parent.div.innerHTML = divsource.innerHTML;
+                parent.div.isloaded = true;
+            }
+
+
+        }
+        catch(ex)
+        {
+        }
+    }
+
+    updateparent();
+        //HideWait();
+    </script>
+
