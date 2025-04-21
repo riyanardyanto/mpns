@@ -6,7 +6,7 @@ from ttkbootstrap.constants import *
 from ttkbootstrap.tooltip import ToolTip
 from ttkwidgets.autocomplete import AutocompleteCombobox
 
-from src.utils.helpers import resource_path
+from src.utils.helpers import get_data_from_excel, resource_path
 
 
 class Sidebar(ttk.Frame):
@@ -144,7 +144,7 @@ class Sidebar(ttk.Frame):
         self.entry_user = AutocompleteCombobox(
             master=L_frame,
             width=12,
-            # completevalues=model.get_data_from_excel(sheet_index=1),
+            completevalues=get_data_from_excel(sheet_index=1),
             cursor="hand2",
         )
         self.entry_user.pack(

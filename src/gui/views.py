@@ -12,13 +12,9 @@ from ttkbootstrap.constants import *
 
 from src.core.logic import extract_dataframe, fetch_data, read_csv
 from src.gui.qr import generate_qrcode
-
-# from src.gui.target_editor import EditableTableview
 from src.gui.target_editor import EditableTableview
 from src.gui.toast import create_toast
 from src.utils.constants import HEADERS, NTLM_AUTH
-
-# from src.utils.csvhandle import load_targets_df
 from src.utils.csvhandle import get_targets_file_path, load_targets_df
 from src.utils.helpers import (
     get_data_from_excel,
@@ -42,10 +38,10 @@ class View(ttk.Window):
 
         self.sidebar = Sidebar(self)
         self.sidebar.btn_get_data.configure(command=self.get_data)
+        self.sidebar.btn_target.configure(command=self.show_target_editor)
         self.sidebar.btn_qr.configure(command=self.create_qrcode_toplevel)
         self.sidebar.btn_result.configure(command=self.show_result)
         self.sidebar.btn_save.configure(command=self.save_excel)
-        self.sidebar.btn_target.configure(command=self.show_target_editor)
         self.sidebar.pack(side=LEFT, fill=Y)
 
         ttk.Separator(
@@ -56,71 +52,6 @@ class View(ttk.Window):
 
         self.mainscreen = MainScreen(self)
         self.mainscreen.pack(side=LEFT, fill=BOTH, expand=YES)
-
-    def save_excel(self):
-        try:
-            if self.sidebar.entry_user.get() == "":
-                create_toast("Enter username first", WARNING)
-            else:
-                file_excel = self.excelDB.get()
-                wb = load_workbook(file_excel)
-
-                sheet_data = wb["Data"]
-                ID = len(sheet_data["No"])
-                data = [
-                    ID,
-                    self.sidebar.dt.entry.get(),
-                    self.sidebar.select_shift.get(),
-                    self.sidebar.lu.get(),
-                    self.sidebar.entry_user.get(),
-                    self.mainscreen.inp.get("1.0", ttk.END),
-                ]
-                sheet_data.append(data)
-                sheet_data.cell(
-                    row=ID + 1,
-                    column=6,
-                ).font = Font(name="Consolas", size=10)
-
-                sheet_setting = wb["Username"]
-                list_username = get_data_from_excel(sheet_index=1)
-                if self.sidebar.entry_user.get() not in list_username:
-                    sheet_setting.append([self.sidebar.entry_user.get()])
-
-                wb.save(file_excel)
-                create_toast("File is successfully updated.", SUCCESS)
-
-        except PermissionError:
-            create_toast(
-                "File is being used by another User.\nPlease try again later.", DANGER
-            )
-
-    def show_target_editor(self):
-        try:
-            self.target.destroy()
-        except AttributeError:
-            pass
-
-        self.target = ttk.Toplevel(self)
-        self.target.title("Target Editor")
-
-        lu = self.sidebar.lu.get().lstrip("LU")
-        file_path = get_targets_file_path(lu)
-        target_df = load_targets_df(file_path)
-
-        columns = target_df.columns.to_list()
-        data = target_df.values.tolist()
-
-        table = EditableTableview(self.target, columns, data)
-        table.pack(fill=BOTH, expand=False, padx=10, pady=10)
-
-        # Tombol untuk menyimpan ke CSV
-        save_btn = ttk.Button(
-            self.target,
-            text="Simpan ke CSV",
-            command=lambda: table.save_to_csv(file_path),
-            bootstyle=SUCCESS,
-        )
-        save_btn.pack(pady=5)
 
     @async_handler
     async def get_data(self):
@@ -168,33 +99,6 @@ class View(ttk.Window):
         self.mainscreen.table.columnconfigure(1, weight=1)
         self.mainscreen.table.build_table_data(head, data)
         self.mainscreen.table.reset_table()
-
-    def destroy_content_child(self, frm: ttk.Frame):
-        for child in frm.winfo_children():
-            child.destroy()
-
-    @async_handler
-    async def create_qrcode_toplevel(self):
-        width = 500
-        height = 500
-        x = (self.winfo_screenwidth() // 2) - (width // 2)
-        y = (self.winfo_screenheight() // 2) - (height // 2)
-
-        try:
-            self.toplevel.destroy()
-        except AttributeError:
-            pass
-
-        self.toplevel = ttk.Toplevel(self, position=(x, y))
-        self.toplevel.title("QR Code")
-
-        # Label untuk menampilkan QR code
-        qr_label = ttk.Label(self.toplevel)
-        qr_label.pack(expand=True, fill=BOTH)
-
-        text = f"{self.sidebar.dt.entry.get()}, {self.sidebar.select_shift.get()}\n{self.mainscreen.inp.get('1.0', ttk.END)}"
-
-        await generate_qrcode(text, qr_label)
 
     @async_handler
     async def show_result(self):
@@ -244,6 +148,97 @@ class View(ttk.Window):
             create_toast(f"Error: {e}", DANGER)
         finally:
             self.mainscreen.progressbar.stop()
+
+    @async_handler
+    async def create_qrcode_toplevel(self):
+        width = 500
+        height = 500
+        x = (self.winfo_screenwidth() // 2) - (width // 2)
+        y = (self.winfo_screenheight() // 2) - (height // 2)
+
+        try:
+            self.toplevel.destroy()
+        except AttributeError:
+            pass
+
+        self.toplevel = ttk.Toplevel(self, position=(x, y))
+        self.toplevel.title("QR Code")
+
+        # Label untuk menampilkan QR code
+        qr_label = ttk.Label(self.toplevel)
+        qr_label.pack(expand=True, fill=BOTH)
+
+        text = f"{self.sidebar.dt.entry.get()}, {self.sidebar.select_shift.get()}\n{self.mainscreen.inp.get('1.0', ttk.END)}"
+
+        await generate_qrcode(text, qr_label)
+
+    def show_target_editor(self):
+        try:
+            self.target.destroy()
+        except AttributeError:
+            pass
+
+        self.target = ttk.Toplevel(self)
+        self.target.title("Target Editor")
+
+        lu = self.sidebar.lu.get().lstrip("LU")
+        file_path = get_targets_file_path(lu)
+        target_df = load_targets_df(file_path)
+
+        columns = target_df.columns.to_list()
+        data = target_df.values.tolist()
+
+        table = EditableTableview(self.target, columns, data)
+        table.pack(fill=BOTH, expand=False, padx=10, pady=10)
+
+        # Tombol untuk menyimpan ke CSV
+        save_btn = ttk.Button(
+            self.target,
+            text="Simpan ke CSV",
+            command=lambda: table.save_to_csv(file_path),
+            bootstyle=SUCCESS,
+        )
+        save_btn.pack(pady=5)
+
+    def save_excel(self):
+        try:
+            if self.sidebar.entry_user.get() == "":
+                create_toast("Enter username first", WARNING)
+            else:
+                file_excel = self.excelDB.get()
+                wb = load_workbook(file_excel)
+
+                sheet_data = wb["Data"]
+                ID = len(sheet_data["No"])
+                data = [
+                    ID,
+                    self.sidebar.dt.entry.get(),
+                    self.sidebar.select_shift.get(),
+                    self.sidebar.lu.get(),
+                    self.sidebar.entry_user.get(),
+                    self.mainscreen.inp.get("1.0", ttk.END),
+                ]
+                sheet_data.append(data)
+                sheet_data.cell(
+                    row=ID + 1,
+                    column=6,
+                ).font = Font(name="Consolas", size=10)
+
+                sheet_setting = wb["Username"]
+                list_username = get_data_from_excel(sheet_index=1)
+                if self.sidebar.entry_user.get() not in list_username:
+                    sheet_setting.append([self.sidebar.entry_user.get()])
+
+                    list_username.append(self.sidebar.entry_user.get())
+                    self.sidebar.entry_user.configure(completevalues=list_username)
+
+                wb.save(file_excel)
+                create_toast("File is successfully updated.", SUCCESS)
+
+        except PermissionError:
+            create_toast(
+                "File is being used by another User.\nPlease try again later.", DANGER
+            )
 
     def help_btn_click(self):
         try:
