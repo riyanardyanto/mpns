@@ -10,23 +10,46 @@ from src.utils.constants import TABLE_HEAD
 class MainScreen(ttk.Frame):
     def __init__(self, master: ttk.Window) -> None:
         super().__init__(master, padding=(0, 10))
-        self.content_frame = ttk.Frame(master=self)
+
+        self.loading_frame = ttk.Frame(
+            master=self,
+        )
+        self.loading_frame.pack(
+            side=TOP,
+            fill=X,
+            padx=0,
+            pady=(0, 10),
+        )
+
+        self.content_frame = ttk.Frame(
+            master=self,
+        )
+        self.content_frame.pack(
+            side=TOP,
+            fill=BOTH,
+            expand=YES,
+            anchor=N,
+            padx=0,
+            pady=0,
+        )
+
         self.progressbar = Progressbar(
-            self,
+            self.loading_frame,
             mode="determinate",
             bootstyle="success",
             orient="horizontal",
         )
-        self.progressbar.pack(padx=(5, 10), pady=(0, 10), fill="x")
-
-        self.content_frame.pack(
-            side=LEFT,
-            fill=BOTH,
-            expand=YES,
-            anchor=W,
-            padx=0,
-            pady=0,
+        self.progressbar.pack(
+            padx=(10, 0), pady=(0, 0), fill="x", side=LEFT, expand=YES
         )
+
+        self.time_period = ttk.Label(
+            master=self.loading_frame,
+            text="",
+            justify=RIGHT,
+            # width=40,
+        )
+        self.time_period.pack(padx=(5, 10), pady=(0, 0), fill="none", side=RIGHT)
 
         self.table = Tableview(
             master=self.content_frame,

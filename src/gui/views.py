@@ -7,10 +7,11 @@ from async_tkinter_loop import async_handler, async_mainloop
 from openpyxl import load_workbook
 from openpyxl.styles import Font
 from tabulate import tabulate
-from tkinterPdfViewer import tkinterPdfViewer as pdf
+
+# from tkinterPdfViewer import tkinterPdfViewer as pdf
 from ttkbootstrap.constants import *
 
-from src.core.logic import extract_dataframe, fetch_data, read_csv
+from src.core.logic import extract_dataframe, fetch_data, get_time_period, read_csv
 from src.gui.qr import generate_qrcode
 from src.gui.target_editor import EditableTableview
 from src.gui.toast import create_toast
@@ -78,7 +79,11 @@ class View(ttk.Window):
                     auth=NTLM_AUTH,
                 )
             if response.status_code == 200:
+                time_period = get_time_period(response)
+                self.mainscreen.time_period.configure(text=time_period)
+
                 df = extract_dataframe(response)
+
                 create_toast(f"App setting\n{url}", SUCCESS)
             else:
                 create_toast(
@@ -126,7 +131,7 @@ class View(ttk.Window):
                 )
                 http_result, excel_result = await asyncio.gather(fetch_task, read_task)
 
-            data = [excel_result, http_result]
+            data = [excel_result, http_result[0]]
             txt = tabulate(
                 pd.DataFrame(data).transpose().reset_index().values.tolist(),
                 tablefmt="pretty",
@@ -144,6 +149,8 @@ class View(ttk.Window):
             else:
                 self.mainscreen.inp.insert("1.0", value)
                 create_toast("Updated", SUCCESS)
+
+            self.mainscreen.time_period.configure(text=http_result[1])
         except Exception as e:
             create_toast(f"Error: {e}", DANGER)
         finally:
@@ -168,7 +175,11 @@ class View(ttk.Window):
         qr_label = ttk.Label(self.toplevel)
         qr_label.pack(expand=True, fill=BOTH)
 
-        text = f"{self.sidebar.dt.entry.get()}, {self.sidebar.select_shift.get()}\n{self.mainscreen.inp.get('1.0', ttk.END)}"
+        tanggal = self.sidebar.dt.entry.get()
+        shift = self.sidebar.select_shift.get().lstrip("Shift ")
+        report = self.mainscreen.inp.get("1.0", ttk.END)
+
+        text = f"{tanggal}, {shift}\n{report}"
 
         await generate_qrcode(text, qr_label)
 
@@ -194,7 +205,7 @@ class View(ttk.Window):
         # Tombol untuk menyimpan ke CSV
         save_btn = ttk.Button(
             self.target,
-            text="Simpan ke CSV",
+            text="Save",
             command=lambda: table.save_to_csv(file_path),
             bootstyle=SUCCESS,
         )
@@ -240,30 +251,31 @@ class View(ttk.Window):
                 "File is being used by another User.\nPlease try again later.", DANGER
             )
 
-    def help_btn_click(self):
-        try:
-            self.v1.destroy()
-            self.pdf_viewer.close_pdf()
-            self.help_window.destroy()
+    # def help_btn_click(self):
+    #     try:
+    #         self.v1.destroy()
+    #         self.pdf_viewer.close_pdf()
+    #         self.help_window.destroy()
 
-        except:  # noqa: E722
-            pass
+    #     except:  # noqa: E722
+    #         pass
 
-        self.help_window = ttk.Toplevel(title="Help")
-        self.help_window.geometry("1300x780")
-        self.pdf_viewer = pdf.ShowPdf()
-        self.v1 = self.pdf_viewer.pdf_view(
-            self.help_window,
-            pdf_location=self.help_file_pdf.get(),
-            width=160,
-            height=100,
-            dpi=150,
-            load=True,
-        )
-        self.v1.pack()
-        self.help_window.mainloop()
+    #     self.help_window = ttk.Toplevel(title="Help")
+    #     self.help_window.geometry("1300x780")
+    #     self.pdf_viewer = pdf.ShowPdf()
+    #     self.v1 = self.pdf_viewer.pdf_view(
+    #         self.help_window,
+    #         pdf_location=self.help_file_pdf.get(),
+    #         width=160,
+    #         height=100,
+    #         dpi=150,
+    #         load=True,
+    #     )
+    #     self.v1.pack()
+    #     self.help_window.mainloop()
 
 
 if __name__ == "__main__":
     app = View()
+    async_mainloop(app)
     async_mainloop(app)

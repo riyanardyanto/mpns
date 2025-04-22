@@ -19,6 +19,12 @@ async def fetch_data(url: str, client: httpx.AsyncClient):
         if response.status_code == 200:
             soup = bs(response.text, features="lxml")
             elements = soup.find_all("td")
+            time_period = elements[
+                elements.index(soup.find("td", string="Calendar time")) + 8
+            ].text
+
+            # print(time_period)
+
             actual = {
                 "PR": elements[
                     elements.index(soup.find("td", string="Strat. PR=")) + 1
@@ -39,7 +45,7 @@ async def fetch_data(url: str, client: httpx.AsyncClient):
                     elements.index(soup.find("td", string="Unplanned downtime")) + 4
                 ].text,
             }
-            return actual
+            return actual, time_period
         else:
             create_toast(f"HTTP Error: Status {response.status_code}", "danger")
             return None
@@ -64,6 +70,11 @@ async def read_csv(file_path: str, shift=1):
     except Exception as e:
         create_toast(f"Error reading Excel: {e}", "danger")
         return None
+
+
+def get_time_period(response: httpx.Response):
+    df = pd.read_html(response.content)
+    return str(df[3][1][2])
 
 
 def extract_dataframe(response: httpx.Response):

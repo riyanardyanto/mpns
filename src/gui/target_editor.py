@@ -4,10 +4,9 @@ from tkinter import filedialog
 import pandas as pd
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
+from ttkbootstrap.tooltip import ToolTip
 
 from src.gui.toast import create_toast
-
-# from tkinter import ttk
 
 
 class EditableTableview(ttk.Frame):
@@ -98,6 +97,8 @@ class EditableTableview(ttk.Frame):
         self.entry = ttk.Entry(self, bootstyle=INFO)
         self.entry.editing_item = None
         self.entry.editing_column = None
+
+        ToolTip(self.treeview, text="Double click to edit", delay=0)
 
     def on_double_click(self, event):
         # Identify the item and column clicked
