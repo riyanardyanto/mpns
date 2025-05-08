@@ -1,4 +1,5 @@
 import asyncio
+from configparser import ConfigParser
 
 import httpx
 import pandas as pd
@@ -7,8 +8,6 @@ from async_tkinter_loop import async_handler, async_mainloop
 from openpyxl import load_workbook
 from openpyxl.styles import Font
 from tabulate import tabulate
-
-# from tkinterPdfViewer import tkinterPdfViewer as pdf
 from ttkbootstrap.constants import *
 
 from src.core.logic import extract_dataframe, fetch_data, get_time_period, read_csv
@@ -22,6 +21,7 @@ from src.utils.helpers import (
     get_excel_filename,
     get_url_result,
     get_url_stop,
+    read_config,
     resource_path,
 )
 
@@ -35,37 +35,60 @@ class View(ttk.Window):
         self.title("Daily Report")
         self.iconbitmap(resource_path("assets/c5_spa.ico"))
         self.excelDB = ttk.StringVar(value=get_excel_filename())
-        # self.help_file_pdf = ttk.StringVar(value=get_pdf_filename())
+        self.config = read_config()
 
+        # Initialize Sidebar
         self.sidebar = Sidebar(self)
-        self.sidebar.btn_get_data.configure(command=self.get_data)
-        self.sidebar.btn_target.configure(command=self.show_target_editor)
-        self.sidebar.btn_qr.configure(command=self.create_qrcode_toplevel)
-        self.sidebar.btn_result.configure(command=self.show_result)
-        self.sidebar.btn_save.configure(command=self.save_excel)
+        self._configure_sidebar()
         self.sidebar.pack(side=LEFT, fill=Y)
 
+        # Add separator
         ttk.Separator(
             self,
             orient="vertical",
             style="success.Vertical.TSeparator",
         ).pack(side=LEFT, fill=Y, pady=10)
 
+        # Initialize Main Screen
         self.mainscreen = MainScreen(self)
         self.mainscreen.pack(side=LEFT, fill=BOTH, expand=YES)
 
+    def _configure_sidebar(self):
+        """Configure sidebar buttons and dropdowns."""
+        self.sidebar.lu.configure(
+            values=sorted(self.config.get("DEFAULT", "link_up").split(","))
+        )
+        self.sidebar.lu.current(0)
+
+        self.sidebar.btn_get_data.configure(command=self.get_data)
+        self.sidebar.btn_target.configure(command=self.show_target_editor)
+        self.sidebar.btn_qr.configure(command=self.create_qrcode_toplevel)
+        self.sidebar.btn_result.configure(command=self.show_result)
+        self.sidebar.btn_save.configure(command=self.save_excel)
+
+    def _get_url(self, endpoint_type, link_up, date_entry, shift):
+        """Helper method to generate URLs based on environment."""
+        if self.config.get("DEFAULT", "environment") == "production":
+            if endpoint_type == "stop":
+                return get_url_stop(link_up, date_entry, shift)
+            elif endpoint_type == "result":
+                return get_url_result(link_up, date_entry, shift)
+        else:
+            return f"http://127.0.0.1:5500/assets/page-{endpoint_type}.html"
+
     @async_handler
     async def get_data(self):
-        if self.sidebar.select_shift.get() == "":
-            create_toast("Select shift firts", WARNING)
+        """Fetch and display data based on user input."""
+        if not self.sidebar.select_shift.get():
+            create_toast("Select shift first", WARNING)
             return
 
         link_up = self.sidebar.lu.get().lstrip("LU")
         date_entry = self.sidebar.dt.entry.get()
         shift = self.sidebar.select_shift.get().lstrip("Shift ")
-
-        url = get_url_stop(link_up, date_entry, shift)
-        # url = "http://127.0.0.1:5500/assets/page-machine.html"
+        url = self._get_url("stop", link_up, date_entry, shift)
+        # url = "http://127.0.0.1:5500/assets/page-shift.html"
+        print(url)
 
         try:
             self.mainscreen.progressbar.start()
@@ -83,20 +106,21 @@ class View(ttk.Window):
                 self.mainscreen.time_period.configure(text=time_period)
 
                 df = extract_dataframe(response)
+                self._populate_table(df)
 
                 create_toast(f"App setting\n{url}", SUCCESS)
             else:
                 create_toast(
                     f"Error Code {response.status_code}: {response.text}", DANGER
                 )
-                return
-
         except httpx.HTTPError as e:
-            create_toast(e, DANGER)
+            create_toast(f"HTTP Error: {e}", DANGER)
         finally:
             self.mainscreen.progressbar.stop()
             self.sidebar.btn_get_data.configure(state=NORMAL)
 
+    def _populate_table(self, df: pd.DataFrame):
+        """Populate the table with data."""
         head = df.columns.to_list()
         data = df.values.tolist()
 
@@ -107,8 +131,9 @@ class View(ttk.Window):
 
     @async_handler
     async def show_result(self):
-        if self.sidebar.select_shift.get() == "":
-            create_toast("Select shift firts", WARNING)
+        """Fetch and display result data."""
+        if not self.sidebar.select_shift.get():
+            create_toast("Select shift first", WARNING)
             return
 
         self.mainscreen.progressbar.start()
@@ -116,50 +141,46 @@ class View(ttk.Window):
         link_up = self.sidebar.lu.get().lstrip("LU")
         date_entry = self.sidebar.dt.entry.get()
         shift = self.sidebar.select_shift.get().lstrip("Shift ")
+        url = self._get_url("result", link_up, date_entry, shift)
 
-        url = get_url_result(link_up, date_entry, shift)
-        # url = "http://127.0.0.1:5500/assets/page-shift.html"
-
-        excel_file = get_targets_file_path(self.sidebar.lu.get().lstrip("LU"))
+        excel_file = get_targets_file_path(link_up)
 
         try:
             async with httpx.AsyncClient() as client:
                 fetch_task = fetch_data(url, client)
-                read_task = read_csv(
-                    excel_file,
-                    shift=self.sidebar.select_shift.get().lstrip("Shift "),
-                )
+                read_task = read_csv(excel_file, shift=shift)
                 http_result, excel_result = await asyncio.gather(fetch_task, read_task)
 
-            data = [excel_result, http_result[0]]
-            txt = tabulate(
-                pd.DataFrame(data).transpose().reset_index().values.tolist(),
-                tablefmt="pretty",
-                headers=[self.sidebar.lu.get(), "TARGET", "ACTUAL"],
-                numalign="left",
-                stralign="left",
-            )
-
-            value = "`" + txt.replace("\n", "`\n`") + "`\n\n"
-
-            if "+-" in self.mainscreen.inp.get("1.0", "2.0"):
-                self.mainscreen.inp.delete("1.0", "12.0")
-                self.mainscreen.inp.insert("1.0", value)
-                create_toast("Updated", SUCCESS)
-            else:
-                self.mainscreen.inp.insert("1.0", value)
-                create_toast("Updated", SUCCESS)
-
-            self.mainscreen.time_period.configure(text=http_result[1])
+            self._display_result(http_result, excel_result)
         except Exception as e:
             create_toast(f"Error: {e}", DANGER)
         finally:
             self.mainscreen.progressbar.stop()
 
+    def _display_result(self, http_result, excel_result):
+        """Display the result data in the UI."""
+        data = [excel_result, http_result[0]]
+        txt = tabulate(
+            pd.DataFrame(data).transpose().reset_index().values.tolist(),
+            tablefmt="pretty",
+            headers=[self.sidebar.lu.get(), "TARGET", "ACTUAL"],
+            numalign="left",
+            stralign="left",
+        )
+
+        value = "`" + txt.replace("\n", "`\n`") + "`\n\n"
+
+        if "+-" in self.mainscreen.inp.get("1.0", "2.0"):
+            self.mainscreen.inp.delete("1.0", "12.0")
+        self.mainscreen.inp.insert("1.0", value)
+        create_toast("Updated", SUCCESS)
+
+        self.mainscreen.time_period.configure(text=http_result[1])
+
     @async_handler
     async def create_qrcode_toplevel(self):
-        width = 500
-        height = 500
+        """Create a QR code and display it in a new window."""
+        width, height = 500, 500
         x = (self.winfo_screenwidth() // 2) - (width // 2)
         y = (self.winfo_screenheight() // 2) - (height // 2)
 
@@ -171,7 +192,6 @@ class View(ttk.Window):
         self.toplevel = ttk.Toplevel(self, position=(x, y))
         self.toplevel.title("QR Code")
 
-        # Label untuk menampilkan QR code
         qr_label = ttk.Label(self.toplevel)
         qr_label.pack(expand=True, fill=BOTH)
 
@@ -180,10 +200,10 @@ class View(ttk.Window):
         report = self.mainscreen.inp.get("1.0", ttk.END)
 
         text = f"{tanggal}, {shift}\n{report}"
-
         await generate_qrcode(text, qr_label)
 
     def show_target_editor(self):
+        """Open the target editor window."""
         try:
             self.target.destroy()
         except AttributeError:
@@ -202,7 +222,6 @@ class View(ttk.Window):
         table = EditableTableview(self.target, columns, data)
         table.pack(fill=BOTH, expand=False, padx=10, pady=10)
 
-        # Tombol untuk menyimpan ke CSV
         save_btn = ttk.Button(
             self.target,
             text="Save",
@@ -212,70 +231,43 @@ class View(ttk.Window):
         save_btn.pack(pady=5)
 
     def save_excel(self):
+        """Save data to the Excel file."""
         try:
-            if self.sidebar.entry_user.get() == "":
+            if not self.sidebar.entry_user.get():
                 create_toast("Enter username first", WARNING)
-            else:
-                file_excel = self.excelDB.get()
-                wb = load_workbook(file_excel)
+                return
 
-                sheet_data = wb["Data"]
-                ID = len(sheet_data["No"])
-                data = [
-                    ID,
-                    self.sidebar.dt.entry.get(),
-                    self.sidebar.select_shift.get(),
-                    self.sidebar.lu.get(),
-                    self.sidebar.entry_user.get(),
-                    self.mainscreen.inp.get("1.0", ttk.END),
-                ]
-                sheet_data.append(data)
-                sheet_data.cell(
-                    row=ID + 1,
-                    column=6,
-                ).font = Font(name="Consolas", size=10)
+            file_excel = self.excelDB.get()
+            wb = load_workbook(file_excel)
 
-                sheet_setting = wb["Username"]
-                list_username = get_data_from_excel(sheet_index=1)
-                if self.sidebar.entry_user.get() not in list_username:
-                    sheet_setting.append([self.sidebar.entry_user.get()])
+            sheet_data = wb["Data"]
+            ID = len(sheet_data["No"])
+            data = [
+                ID,
+                self.sidebar.dt.entry.get(),
+                self.sidebar.select_shift.get(),
+                self.sidebar.lu.get(),
+                self.sidebar.entry_user.get(),
+                self.mainscreen.inp.get("1.0", ttk.END),
+            ]
+            sheet_data.append(data)
+            sheet_data.cell(row=ID + 1, column=6).font = Font(name="Consolas", size=10)
 
-                    list_username.append(self.sidebar.entry_user.get())
-                    self.sidebar.entry_user.configure(completevalues=list_username)
+            sheet_setting = wb["Username"]
+            list_username = get_data_from_excel(sheet_index=1)
+            if self.sidebar.entry_user.get() not in list_username:
+                sheet_setting.append([self.sidebar.entry_user.get()])
+                list_username.append(self.sidebar.entry_user.get())
+                self.sidebar.entry_user.configure(completevalues=list_username)
 
-                wb.save(file_excel)
-                create_toast("File is successfully updated.", SUCCESS)
-
+            wb.save(file_excel)
+            create_toast("File is successfully updated.", SUCCESS)
         except PermissionError:
             create_toast(
                 "File is being used by another User.\nPlease try again later.", DANGER
             )
 
-    # def help_btn_click(self):
-    #     try:
-    #         self.v1.destroy()
-    #         self.pdf_viewer.close_pdf()
-    #         self.help_window.destroy()
-
-    #     except:  # noqa: E722
-    #         pass
-
-    #     self.help_window = ttk.Toplevel(title="Help")
-    #     self.help_window.geometry("1300x780")
-    #     self.pdf_viewer = pdf.ShowPdf()
-    #     self.v1 = self.pdf_viewer.pdf_view(
-    #         self.help_window,
-    #         pdf_location=self.help_file_pdf.get(),
-    #         width=160,
-    #         height=100,
-    #         dpi=150,
-    #         load=True,
-    #     )
-    #     self.v1.pack()
-    #     self.help_window.mainloop()
-
 
 if __name__ == "__main__":
     app = View()
-    async_mainloop(app)
     async_mainloop(app)

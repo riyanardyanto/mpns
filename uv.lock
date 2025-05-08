@@ -153,6 +153,15 @@ wheels = [
 ]
 
 [[package]]
+name = "configparser"
+version = "7.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8b/ac/ea19242153b5e8be412a726a70e82c7b5c1537c83f61b20995b2eda3dcd7/configparser-7.2.0.tar.gz", hash = "sha256:b629cc8ae916e3afbd36d1b3d093f34193d851e11998920fdcfc4552218b7b70", size = 51273 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/09/fe/f61e7129e9e689d9e40bbf8a36fb90f04eceb477f4617c02c6a18463e81f/configparser-7.2.0-py3-none-any.whl", hash = "sha256:fee5e1f3db4156dcd0ed95bc4edfa3580475537711f67a819c966b389d09ce62", size = 17232 },
+]
+
+[[package]]
 name = "cryptography"
 version = "44.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -405,6 +414,7 @@ dependencies = [
     { name = "async-tkinter-loop" },
     { name = "auto-py-to-exe" },
     { name = "beautifulsoup4" },
+    { name = "configparser" },
     { name = "httpx" },
     { name = "httpx-ntlm" },
     { name = "lxml" },
@@ -425,6 +435,7 @@ requires-dist = [
     { name = "async-tkinter-loop", specifier = ">=0.9.3" },
     { name = "auto-py-to-exe", specifier = ">=2.46.0" },
     { name = "beautifulsoup4", specifier = ">=4.13.3" },
+    { name = "configparser", specifier = ">=7.2.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "httpx-ntlm", specifier = ">=1.4.0" },
     { name = "lxml", specifier = ">=5.3.2" },

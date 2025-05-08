@@ -115,4 +115,4 @@ def extract_dataframe(response: httpx.Response):
     final_df.loc[:, "Stops"] = convert_st
     final_df.loc[:, "DT [min]"] = convert_dt
 
-    return final_df
+    return final_df.to_dict(orient="records")
