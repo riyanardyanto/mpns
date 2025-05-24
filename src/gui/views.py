@@ -1,23 +1,15 @@
 import asyncio
-from configparser import ConfigParser
-from pprint import pprint
 
 import httpx
 import pandas as pd
 import ttkbootstrap as ttk
-from async_tkinter_loop import async_handler, async_mainloop
+from async_tkinter_loop import async_handler
 from openpyxl import load_workbook
 from openpyxl.styles import Font
 from tabulate import tabulate
 from ttkbootstrap.constants import *
 
-from src.core.logic import (
-    extract_dataframe,
-    fetch_data,
-    get_data_spa,
-    get_time_period,
-    read_csv,
-)
+from src.core.logic import fetch_data, get_data_spa, get_time_period, read_csv
 from src.gui.qr import generate_qrcode
 from src.gui.target_editor import EditableTableview
 from src.gui.toast import create_toast
