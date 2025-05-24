@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 
 import pandas as pd
 
@@ -16,17 +16,16 @@ data = [
 
 
 def get_targets_file_path(lu):
-    script_folder = get_script_folder()
-    target_folder = os.path.join(script_folder, "Target")
-    if not os.path.exists(target_folder):
-        os.makedirs(target_folder)
+    script_folder = Path(get_script_folder())
+    target_folder = script_folder / "Target"
+    target_folder.mkdir(parents=True, exist_ok=True)
 
-    filename = os.path.join(target_folder, f"target_{lu}.csv")
-    if not os.path.exists(filename):
+    filename = target_folder / f"target_{lu}.csv"
+    if not filename.exists():
         df = pd.DataFrame(data, columns=columns)
         df.to_csv(filename, index=False)
 
-    return filename
+    return str(filename)
 
 
 def load_targets_df(filename=None):

@@ -1,7 +1,6 @@
-import ttkbootstrap as ttk
 from async_tkinter_loop import async_mainloop
 
-from src import View, resource_path
+from src import View
 
 
 def main():

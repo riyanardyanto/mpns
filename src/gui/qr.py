@@ -25,7 +25,7 @@ async def generate_qrcode(
         # Create a QR code object with specified settings
         qr = qrcode.QRCode(
             version=1,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            error_correction=qrcode.ERROR_CORRECT_L,
             box_size=10,
             border=4,
         )
@@ -33,8 +33,8 @@ async def generate_qrcode(
         qr.make(fit=True)
 
         # Convert the QR code to a PIL image
-        qr_img = qr.make_image(fill_color=fill_color, back_color=back_color)
-        qr_img = qr_img.resize((500, 500), resample=Image.ANTIALIAS)
+        qr_img = qr.make_image(fill_color=fill_color, back_color="orange")
+        qr_img = qr_img.resize((500, 500), resample=Image.Resampling.LANCZOS)
 
         # Convert the PIL image to a format compatible with Tkinter
         photo = ImageTk.PhotoImage(qr_img)

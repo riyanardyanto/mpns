@@ -1,5 +1,6 @@
 import asyncio
 from configparser import ConfigParser
+from pprint import pprint
 
 import httpx
 import pandas as pd
@@ -10,7 +11,13 @@ from openpyxl.styles import Font
 from tabulate import tabulate
 from ttkbootstrap.constants import *
 
-from src.core.logic import extract_dataframe, fetch_data, get_time_period, read_csv
+from src.core.logic import (
+    extract_dataframe,
+    fetch_data,
+    get_data_spa,
+    get_time_period,
+    read_csv,
+)
 from src.gui.qr import generate_qrcode
 from src.gui.target_editor import EditableTableview
 from src.gui.toast import create_toast
@@ -87,8 +94,6 @@ class View(ttk.Window):
         date_entry = self.sidebar.dt.entry.get()
         shift = self.sidebar.select_shift.get().lstrip("Shift ")
         url = self._get_url("stop", link_up, date_entry, shift)
-        # url = "http://127.0.0.1:5500/assets/page-shift.html"
-        print(url)
 
         try:
             self.mainscreen.progressbar.start()
@@ -105,7 +110,9 @@ class View(ttk.Window):
                 time_period = get_time_period(response)
                 self.mainscreen.time_period.configure(text=time_period)
 
-                df = extract_dataframe(response)
+                # df = extract_dataframe(response)
+                df = get_data_spa(response)
+
                 self._populate_table(df)
 
                 create_toast(f"App setting\n{url}", SUCCESS)
@@ -196,10 +203,11 @@ class View(ttk.Window):
         qr_label.pack(expand=True, fill=BOTH)
 
         tanggal = self.sidebar.dt.entry.get()
-        shift = self.sidebar.select_shift.get().lstrip("Shift ")
+        shift = self.sidebar.select_shift.get()
         report = self.mainscreen.inp.get("1.0", ttk.END)
 
         text = f"{tanggal}, {shift}\n{report}"
+
         await generate_qrcode(text, qr_label)
 
     def show_target_editor(self):
@@ -266,8 +274,3 @@ class View(ttk.Window):
             create_toast(
                 "File is being used by another User.\nPlease try again later.", DANGER
             )
-
-
-if __name__ == "__main__":
-    app = View()
-    async_mainloop(app)

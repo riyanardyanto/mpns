@@ -18,3 +18,6 @@ TABLE_HEAD = [
     "Stops",
     "DT [min]",
 ]
+
+GREEN = "🟢"
+RED = "🔴"

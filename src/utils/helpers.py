@@ -1,6 +1,6 @@
-import os
 import sys
 from configparser import ConfigParser
+from pathlib import Path
 
 import httpx
 import openpyxl
@@ -89,8 +89,8 @@ def resource_path(relative_path: str) -> str:
     Returns:
         str: The absolute path to the resource.
     """
-    base_path = getattr(sys, "_MEIPASS", os.path.abspath("."))
-    return os.path.join(base_path, relative_path)
+    base_path = getattr(sys, "_MEIPASS", str(Path(".").resolve()))
+    return str(Path(base_path) / relative_path)
 
 
 def get_script_folder() -> str:
@@ -101,18 +101,18 @@ def get_script_folder() -> str:
         str: The absolute path to the script folder.
     """
     if getattr(sys, "frozen", False):
-        return os.path.dirname(sys.executable)
-    return os.path.dirname(os.path.abspath(sys.modules["__main__"].__file__))
+        return str(Path(sys.executable).parent)
+    return str(Path(sys.modules["__main__"].__file__).resolve().parent)
 
 
 def create_excel_file() -> None:
     """
     Create an Excel file with predefined sheets if it doesn't already exist.
     """
-    file_path = os.path.join(get_script_folder(), "DB.xlsx")
+    file_path = Path(get_script_folder()) / "DB.xlsx"
     sheets_list = ["Data", "Username", "Link", "DailyTarget"]
 
-    if not os.path.exists(file_path):
+    if not file_path.exists():
         wb = Workbook()
         wb.active.title = "Data"
         for sheet_name in sheets_list[1:]:
@@ -134,10 +134,10 @@ def get_excel_filename() -> str:
     Returns:
         str: The path to the Excel file.
     """
-    file_path = os.path.join(get_script_folder(), "DB.xlsx")
-    if not os.path.exists(file_path):
+    file_path = Path(get_script_folder()) / "DB.xlsx"
+    if not file_path.exists():
         create_excel_file()
-    return file_path
+    return str(file_path)
 
 
 def get_data_from_excel(sheet_index: int):
@@ -166,11 +166,12 @@ def read_config():
     Returns:
         ConfigParser: The configuration object.
     """
-    config_path = os.path.join(get_script_folder(), "config.ini")
-    if not os.path.exists(config_path):
-        create_config()
+    config_path = Path(get_script_folder()) / "config.ini"
     config = ConfigParser()
-    config.read(config_path)
+    if not config_path.exists():
+        create_config()
+    with open(config_path) as f:
+        config.read_file(f)
     return config
 
 
@@ -186,6 +187,6 @@ def create_config():
         "password": "your_password",  # Replace with a placeholder
         "link_up": ",".join(link_up),
     }
-    config_path = os.path.join(get_script_folder(), "config.ini")
+    config_path = Path(get_script_folder()) / "config.ini"
     with open(config_path, "w") as f:
         config.write(f)

@@ -1,12 +1,10 @@
 import asyncio
-import datetime
-from dataclasses import dataclass
-from typing import Any, Dict, Optional
+from pprint import pprint
 
 import httpx
 import numpy as np
 import pandas as pd
-from bs4 import BeautifulSoup as bs
+import spa_scraper_pyo3
 
 from src.gui.toast import create_toast
 from src.utils.constants import HEADERS, NTLM_AUTH
@@ -17,33 +15,17 @@ async def fetch_data(url: str, client: httpx.AsyncClient):
     try:
         response = await client.get(url, headers=HEADERS, auth=NTLM_AUTH)
         if response.status_code == 200:
-            soup = bs(response.text, features="lxml")
-            elements = soup.find_all("td")
-            time_period = elements[
-                elements.index(soup.find("td", string="Calendar time")) + 8
-            ].text
+            data = spa_scraper_pyo3.extract_loss_tree(response.text)
 
-            # print(time_period)
+            time_period = data.time_range.calendar_time
 
             actual = {
-                "PR": elements[
-                    elements.index(soup.find("td", string="Strat. PR=")) + 1
-                ].text,
-                "MTBF": elements[
-                    elements.index(soup.find("td", string="Strat. PR=")) + 3
-                ].text,
-                "NATR": elements[
-                    elements.index(soup.find("td", string="Not at Target Rate")) + 3
-                ].text,
-                "PDT": elements[
-                    elements.index(soup.find("td", string="Planned downtime")) + 4
-                ].text,
-                "STOP": elements[
-                    elements.index(soup.find("td", string="Unplanned downtime")) + 1
-                ].text,
-                "UPDT": elements[
-                    elements.index(soup.find("td", string="Unplanned downtime")) + 4
-                ].text,
+                "PR": data.time_range.pr,
+                "MTBF": data.time_range.mtbf,
+                "NATR": data.rate_loss.natr.uptime_loss,
+                "PDT": data.planned.pdt.uptime_loss,
+                "STOP": data.unplanned.updt.stops,
+                "UPDT": data.unplanned.updt.uptime_loss,
             }
             return actual, time_period
         else:
@@ -73,8 +55,11 @@ async def read_csv(file_path: str, shift=1):
 
 
 def get_time_period(response: httpx.Response):
-    df = pd.read_html(response.content)
-    return str(df[3][1][2])
+    # df = pd.read_html(response.content)
+    data = spa_scraper_pyo3.extract_stop_stats(response.text)
+    time_period = data.time_period
+    return time_period
+    # return str(df[3][1][2])
 
 
 def extract_dataframe(response: httpx.Response):
@@ -115,4 +100,22 @@ def extract_dataframe(response: httpx.Response):
     final_df.loc[:, "Stops"] = convert_st
     final_df.loc[:, "DT [min]"] = convert_dt
 
-    return final_df.to_dict(orient="records")
+    return final_df
+    # return final_df.to_dict(orient="records")
+
+
+def get_data_spa(response: httpx.Response):
+    stop_stats = spa_scraper_pyo3.extract_stop_stats(response.text)
+
+    data = [
+        [
+            machine.machine_type.split("-")[1],
+            stop_reason.description,
+            int(stop_reason.stops),
+            float(stop_reason.downtime_min),
+        ]
+        for machine in stop_stats.machines
+        for stop_reason in machine.stop_reasons
+    ]
+
+    return pd.DataFrame(data, columns=["Machine", "Description", "Stops", "DT [min]"])
