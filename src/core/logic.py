@@ -1,5 +1,4 @@
 import asyncio
-from pprint import pprint
 
 import httpx
 import numpy as np
@@ -16,6 +15,34 @@ async def fetch_data(url: str, client: httpx.AsyncClient):
         response = await client.get(url, headers=HEADERS, auth=NTLM_AUTH)
         if response.status_code == 200:
             data = spa_scraper_pyo3.extract_loss_tree(response.text)
+            # data = lt.extract_loss_tree(response.text)
+
+            time_period = data.time_range.calendar_time
+
+            actual = {
+                "PR": data.time_range.pr,
+                "MTBF": data.time_range.mtbf,
+                "NATR": data.rate_loss.natr.uptime_loss,
+                "PDT": data.planned.pdt.uptime_loss,
+                "STOP": data.unplanned.updt.stops,
+                "UPDT": data.unplanned.updt.uptime_loss,
+            }
+            print(actual)
+            return actual, time_period
+        else:
+            create_toast(f"HTTP Error: Status {response.status_code}", "danger")
+            return None
+    except Exception as e:
+        create_toast(f"Error fetching data: {e}", "danger")
+        return None
+
+
+async def post_data(url: str, client: httpx.AsyncClient, data: dict[str, str]):
+    try:
+        response = await client.post(url, data=data, headers=HEADERS, auth=NTLM_AUTH)
+        if response.status_code == 200:
+            data = spa_scraper_pyo3.extract_loss_tree(response.text)
+            # data = lt.extract_loss_tree(response.text)
 
             time_period = data.time_range.calendar_time
 

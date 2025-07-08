@@ -198,7 +198,9 @@ class View(ttk.Window):
         shift = self.sidebar.select_shift.get()
         report = self.mainscreen.inp.get("1.0", ttk.END)
 
-        text = f"{tanggal}, {shift}\n{report}"
+        header = f"{tanggal}, {shift}"
+
+        text = f"{header}\n{report}"
 
         await generate_qrcode(text, qr_label)
 

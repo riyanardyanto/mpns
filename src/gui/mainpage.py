@@ -4,6 +4,7 @@ from ttkbootstrap.constants import *
 from ttkbootstrap.tableview import TableRow, Tableview
 from ttkbootstrap.toast import ToastNotification
 
+from src.gui.text_editor import TextEditor
 from src.utils.constants import TABLE_HEAD
 
 
@@ -70,12 +71,13 @@ class MainScreen(ttk.Frame):
         ).pack(side=LEFT, expand=NO, fill=Y, anchor=W)
 
         # Text area for displaying detailed information
-        self.inp = ttk.ScrolledText(
-            master=self.content_frame,
-            font=("Consolas", 10),
-            wrap=WORD,
-        )
-        self.inp.pack(side=LEFT, padx=10, pady=(0, 0), expand=YES, anchor=W, fill=BOTH)
+        # self.inp = ttk.ScrolledText(
+        #     master=self.content_frame,
+        #     font=("Consolas", 10),
+        #     wrap=WORD,
+        # )
+        self.inp = TextEditor(self.content_frame)
+        # self.inp.pack(side=LEFT, padx=10, pady=(0, 0), expand=YES, anchor=W, fill=BOTH)
 
     def on_double_click(self, event):
         """Handle double-click events on the table rows."""
