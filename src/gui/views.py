@@ -9,7 +9,13 @@ from openpyxl.styles import Font
 from tabulate import tabulate
 from ttkbootstrap.constants import *
 
-from src.core.logic import fetch_data, get_data_spa, get_time_period, read_csv
+from src.core.logic import (
+    fetch_data,
+    get_data_spa,
+    get_time_period,
+    post_data,
+    read_csv,
+)
 from src.gui.qr import generate_qrcode
 from src.gui.target_editor import EditableTableview
 from src.gui.toast import create_toast
@@ -64,6 +70,7 @@ class View(ttk.Window):
         self.sidebar.btn_qr.configure(command=self.create_qrcode_toplevel)
         self.sidebar.btn_result.configure(command=self.show_result)
         self.sidebar.btn_save.configure(command=self.save_excel)
+        self.sidebar.btn_test.configure(command=self.test_post)
 
     def _get_url(self, endpoint_type, link_up, date_entry, shift):
         """Helper method to generate URLs based on environment."""
@@ -268,3 +275,35 @@ class View(ttk.Window):
             create_toast(
                 "File is being used by another User.\nPlease try again later.", DANGER
             )
+
+    @async_handler
+    async def test_post(self):
+        """Test function to display a message."""
+        if not self.sidebar.select_shift.get():
+            create_toast("Select shift first", WARNING)
+            return
+
+        self.mainscreen.progressbar.start()
+
+        link_up = self.sidebar.lu.get().lstrip("LU")
+        # date_entry = self.sidebar.dt.entry.get()
+        shift = self.sidebar.select_shift.get().lstrip("Shift ")
+        # url = self._get_url("result", link_up, date_entry, shift)
+        url = self.config.get("DEFAULT", "url")
+        parameter = self.config.get("DEFAULT", "parameter")
+
+        # print(f"URL: {url + '&' + parameter}")
+
+        excel_file = get_targets_file_path(link_up)
+
+        try:
+            async with httpx.AsyncClient() as client:
+                fetch_task = post_data(url, client, parameter=parameter)
+                read_task = read_csv(excel_file, shift=shift)
+                http_result, excel_result = await asyncio.gather(fetch_task, read_task)
+
+            self._display_result(http_result, excel_result)
+        except Exception as e:
+            create_toast(f"Error: {e}", DANGER)
+        finally:
+            self.mainscreen.progressbar.stop()

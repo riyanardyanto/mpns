@@ -15,7 +15,6 @@ async def fetch_data(url: str, client: httpx.AsyncClient):
         response = await client.get(url, headers=HEADERS, auth=NTLM_AUTH)
         if response.status_code == 200:
             data = spa_scraper_pyo3.extract_loss_tree(response.text)
-            # data = lt.extract_loss_tree(response.text)
 
             time_period = data.time_range.calendar_time
 
@@ -37,12 +36,13 @@ async def fetch_data(url: str, client: httpx.AsyncClient):
         return None
 
 
-async def post_data(url: str, client: httpx.AsyncClient, data: dict[str, str]):
+async def post_data(url: str, client: httpx.AsyncClient, parameter: str):
     try:
-        response = await client.post(url, data=data, headers=HEADERS, auth=NTLM_AUTH)
+        response = await client.post(
+            url + "&" + parameter, headers=HEADERS, auth=NTLM_AUTH
+        )
         if response.status_code == 200:
             data = spa_scraper_pyo3.extract_loss_tree(response.text)
-            # data = lt.extract_loss_tree(response.text)
 
             time_period = data.time_range.calendar_time
 

@@ -25,6 +25,9 @@ class Sidebar(ttk.Frame):
         # Create username entry and save button
         self._create_user_entry()
 
+        # Create a test button for debugging
+        self._create_test_button()
+
     def _create_logo(self):
         """Load and display the application logo."""
         try:
@@ -49,7 +52,7 @@ class Sidebar(ttk.Frame):
             width=12,
             cursor="hand2",
         )
-        self.lu.pack(side=TOP, padx=10, pady=(10, 10))
+        self.lu.pack(side=TOP, padx=10, pady=(5, 5))
 
         # Date entry
         self.dt = ttk.DateEntry(
@@ -59,7 +62,7 @@ class Sidebar(ttk.Frame):
             dateformat=r"%Y-%m-%d",
             cursor="hand2",
         )
-        self.dt.pack(side=TOP, padx=10, pady=10)
+        self.dt.pack(side=TOP, padx=10, pady=5)
 
         # Shift radio buttons
         shifts = ["Shift 1", "Shift 2", "Shift 3"]
@@ -81,25 +84,25 @@ class Sidebar(ttk.Frame):
         self.btn_get_data = self._create_button(
             "Get Data", SUCCESS, "Get data stop reason from SPA"
         )
-        self.btn_get_data.pack(side=TOP, padx=10, pady=(10, 10))
+        self.btn_get_data.pack(side=TOP, padx=10, pady=(5, 5))
 
         # Result button
         self.btn_result = self._create_button(
             "Result", SUCCESS, "Show Target and Actual Result"
         )
-        self.btn_result.pack(side=TOP, padx=10, pady=(10, 10))
+        self.btn_result.pack(side=TOP, padx=10, pady=(5, 5))
 
         self._add_separator()
 
         # QR Code button
         self.btn_qr = self._create_button("QR Code", WARNING, "Generate QR Code")
-        self.btn_qr.pack(side=TOP, padx=10, pady=(10, 10))
+        self.btn_qr.pack(side=TOP, padx=10, pady=(5, 5))
 
         # Update Target button
         self.btn_target = self._create_button(
             "Update Target", WARNING, "Open Target Editor"
         )
-        self.btn_target.pack(side=TOP, padx=10, pady=(10, 10))
+        self.btn_target.pack(side=TOP, padx=10, pady=(5, 5))
 
         self._add_separator()
 
@@ -112,14 +115,26 @@ class Sidebar(ttk.Frame):
             completevalues=get_data_from_excel(sheet_index=1),
             cursor="hand2",
         )
-        self.entry_user.pack(side=TOP, padx=10, pady=(10, 10))
+        self.entry_user.pack(side=TOP, padx=10, pady=(5, 5))
         ToolTip(self.entry_user, "Select Username", delay=0)
 
         # Save to Excel button
         self.btn_save = self._create_button("Save Excel", PRIMARY, "Save to Excel")
-        self.btn_save.pack(side=TOP, padx=10, pady=(10, 10))
+        self.btn_save.pack(side=TOP, padx=10, pady=(5, 5))
 
         self._add_separator()
+
+    def _create_test_button(self):
+        """Create a test button for debugging purposes."""
+        self.btn_test = ttk.Button(
+            master=self,
+            text="Test",
+            bootstyle="danger",
+            width=13,
+            cursor="hand2",
+        )
+        ToolTip(self.btn_test, "Test Button", delay=0)
+        self.btn_test.pack(side=TOP, padx=10, pady=(5, 5))
 
     def _create_button(self, text, style, tooltip_text):
         """Helper method to create a button with a tooltip."""

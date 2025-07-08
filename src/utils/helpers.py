@@ -186,6 +186,8 @@ def create_config():
         "username": "your_username",  # Replace with a placeholder
         "password": "your_password",  # Replace with a placeholder
         "link_up": ",".join(link_up),
+        "url": "http://",
+        "parameter": "db_SegmentDateMin=2023-10-01&db_ShiftStart=06:00&db_ShiftEnd=14:00",
     }
     config_path = Path(get_script_folder()) / "config.ini"
     with open(config_path, "w") as f:
