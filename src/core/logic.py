@@ -26,7 +26,6 @@ async def fetch_data(url: str, client: httpx.AsyncClient):
                 "STOP": data.unplanned.updt.stops,
                 "UPDT": data.unplanned.updt.uptime_loss,
             }
-            print(actual)
             return actual, time_period
         else:
             create_toast(f"HTTP Error: Status {response.status_code}", "danger")

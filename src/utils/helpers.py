@@ -27,7 +27,7 @@ async def get_response(link: str) -> httpx.Response:
         return response
 
 
-def get_url_stop(link_up: str, date: str, shift: str) -> str:
+def get_url_period_equipment_data(link_up: str, date: str, shift: str) -> str:
     """
     Generate a URL for fetching stop data.
 
@@ -52,7 +52,9 @@ def get_url_stop(link_up: str, date: str, shift: str) -> str:
     return MAIN_URL + "&".join(f"{key}={value}" for key, value in params.items())
 
 
-def get_url_result(link_up: str, date: str, shift: str) -> str:
+def get_url_norm_period_loss_tree(
+    link_up: str, date: str, shift: str, functional_location: str = "PACK"
+) -> str:
     """
     Generate a URL for fetching result data.
 
@@ -64,17 +66,18 @@ def get_url_result(link_up: str, date: str, shift: str) -> str:
     Returns:
         str: The generated URL.
     """
-    line_prefix = "PMID-SE-CP-L0" if link_up == "17" else "ID01-SE-CP-L0"
+    line_prefix = "PMID-SE-CP-L0" if link_up == "17" or "29" else "ID01-SE-CP-L0"
     params = {
         "table": "SPA_NormPeriodLossTree",
         "act": "query",
-        "db_Normalize": 0,
         "eoa": "x",
+        "db_Line": f"{line_prefix}{link_up}",
+        "db_FunctionalLocation": f"{line_prefix}{link_up}-{functional_location}",
         "db_SegmentDateMin": date,
         "db_ShiftStart": shift,
         "db_ShiftEnd": shift,
-        "db_Line": f"{line_prefix}{link_up}",
         "db_Language": "OEM",
+        "db_Normalize": 0,
     }
     return MAIN_URL + "&".join(f"{key}={value}" for key, value in params.items())
 

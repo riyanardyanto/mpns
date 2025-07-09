@@ -24,8 +24,8 @@ from src.utils.csvhandle import get_targets_file_path, load_targets_df
 from src.utils.helpers import (
     get_data_from_excel,
     get_excel_filename,
-    get_url_result,
-    get_url_stop,
+    get_url_norm_period_loss_tree,
+    get_url_period_equipment_data,
     read_config,
     resource_path,
 )
@@ -70,17 +70,25 @@ class View(ttk.Window):
         self.sidebar.btn_qr.configure(command=self.create_qrcode_toplevel)
         self.sidebar.btn_result.configure(command=self.show_result)
         self.sidebar.btn_save.configure(command=self.save_excel)
-        self.sidebar.btn_test.configure(command=self.test_post)
+        # self.sidebar.btn_test.configure(command=self.test_post)
 
-    def _get_url(self, endpoint_type, link_up, date_entry, shift):
+    def _get_url(
+        self, endpoint_type, link_up, date_entry, shift, functional_location="PACK"
+    ):
         """Helper method to generate URLs based on environment."""
         if self.config.get("DEFAULT", "environment") == "production":
-            if endpoint_type == "stop":
-                return get_url_stop(link_up, date_entry, shift)
-            elif endpoint_type == "result":
-                return get_url_result(link_up, date_entry, shift)
+            # For production environment, generate URLs based on endpoint type
+            if endpoint_type not in ["period_equipment_data", "norm_period_loss_tree"]:
+                raise ValueError(f"Invalid endpoint type: {endpoint_type}")
+            if endpoint_type == "period_equipment_data":
+                return get_url_period_equipment_data(link_up, date_entry, shift)
+            elif endpoint_type == "norm_period_loss_tree":
+                return get_url_norm_period_loss_tree(
+                    link_up, date_entry, shift, functional_location
+                )
         else:
-            return f"http://127.0.0.1:5500/assets/page-{endpoint_type}.html"
+            # For development or testing environment, use local HTML files
+            return f"http://127.0.0.1:5500/assets/{endpoint_type}.html"
 
     @async_handler
     async def get_data(self):
@@ -92,7 +100,7 @@ class View(ttk.Window):
         link_up = self.sidebar.lu.get().lstrip("LU")
         date_entry = self.sidebar.dt.entry.get()
         shift = self.sidebar.select_shift.get().lstrip("Shift ")
-        url = self._get_url("stop", link_up, date_entry, shift)
+        url = self._get_url("period_equipment_data", link_up, date_entry, shift)
 
         try:
             self.mainscreen.progressbar.start()
@@ -147,7 +155,10 @@ class View(ttk.Window):
         link_up = self.sidebar.lu.get().lstrip("LU")
         date_entry = self.sidebar.dt.entry.get()
         shift = self.sidebar.select_shift.get().lstrip("Shift ")
-        url = self._get_url("result", link_up, date_entry, shift)
+        functional_location = self.sidebar.func_location.get()[0:4].upper()
+        url = self._get_url(
+            "norm_period_loss_tree", link_up, date_entry, shift, functional_location
+        )
 
         excel_file = get_targets_file_path(link_up)
 

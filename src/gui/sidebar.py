@@ -26,7 +26,7 @@ class Sidebar(ttk.Frame):
         self._create_user_entry()
 
         # Create a test button for debugging
-        self._create_test_button()
+        # self._create_test_button()
 
     def _create_logo(self):
         """Load and display the application logo."""
@@ -84,7 +84,18 @@ class Sidebar(ttk.Frame):
         self.btn_get_data = self._create_button(
             "Get Data", SUCCESS, "Get data stop reason from SPA"
         )
-        self.btn_get_data.pack(side=TOP, padx=10, pady=(5, 5))
+        self.btn_get_data.pack(side=TOP, padx=10, pady=(5, 10))
+
+        # Link Up combobox
+        self.func_location = ttk.Combobox(
+            self,
+            bootstyle="success",
+            width=12,
+            cursor="hand2",
+            values=["PACKER", "MAKER"],
+        )
+        self.func_location.set("PACKER")
+        self.func_location.pack(side=TOP, padx=10, pady=(10, 5))
 
         # Result button
         self.btn_result = self._create_button(

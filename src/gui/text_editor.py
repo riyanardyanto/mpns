@@ -6,7 +6,7 @@ from ttkbootstrap import Menu
 
 class TextEditor(ttk.ScrolledText):
     def __init__(self, parent) -> None:
-        super().__init__(parent, wrap=ttk.WORD, font=("Cascadia Code", 9))
+        super().__init__(parent, wrap=ttk.WORD, font=("Consolas", 10))
         self.root = parent
 
         self.pack(
@@ -18,17 +18,17 @@ class TextEditor(ttk.ScrolledText):
         self.selected_menu.add_command(
             label="Bold",
             command=self.bold_text,
-            font=("Cascadia Code", 9, "bold"),
+            font=("Consolas", 10, "bold"),
         )
         self.selected_menu.add_command(
             label="Italic",
             command=self.italic_text,
-            font=("Cascadia Code", 9, "italic"),
+            font=("Consolas", 10, "italic"),
         )
         self.selected_menu.add_command(
             label="Strikethrough",
             command=self.strikethrough_text,
-            font=("Cascadia Code", 9, "overstrike"),
+            font=("Consolas", 10, "overstrike"),
         )
 
         self.unselected_menu = Menu(self.root, tearoff=0)
@@ -63,7 +63,7 @@ class TextEditor(ttk.ScrolledText):
             #     self.tag_remove("bold", ttk.SEL_FIRST, ttk.SEL_LAST)
             # else:
             #     self.tag_add("bold", ttk.SEL_FIRST, ttk.SEL_LAST)
-            #     self.tag_configure("bold", font=("Cascadia Code", 9, "bold"))
+            #     self.tag_configure("bold", font=("Consolas",10, "bold"))
 
         except tk.TclError:
             pass
@@ -80,10 +80,10 @@ class TextEditor(ttk.ScrolledText):
 
             # if "italic" in self.tag_names(ttk.SEL_FIRST):
             #     self.tag_remove("italic", ttk.SEL_FIRST, ttk.SEL_LAST)
-            #     self.tag_configure("italic", font=("Cascadia Code", 9, "normal"))
+            #     self.tag_configure("italic", font=("Consolas",10, "normal"))
             # else:
             #     self.tag_add("italic", ttk.SEL_FIRST, ttk.SEL_LAST)
-            #     self.tag_configure("italic", font=("Cascadia Code", 9, "italic"))
+            #     self.tag_configure("italic", font=("Consolas",10, "italic"))
         except tk.TclError:
             pass
 
@@ -100,11 +100,11 @@ class TextEditor(ttk.ScrolledText):
 
             # if "strikethrough" in self.tag_names(first):
             #     self.tag_remove("strikethrough", first, last)
-            #     self.tag_configure("strikethrough", font=("Cascadia Code", 9, "normal"))
+            #     self.tag_configure("strikethrough", font=("Consolas",10, "normal"))
             # else:
             #     self.tag_add("strikethrough", first, last)
             #     self.tag_configure(
-            #         "strikethrough", font=("Cascadia Code", 9, "overstrike")
+            #         "strikethrough", font=("Consolas",10, "overstrike")
             #     )
         except tk.TclError:
             pass
