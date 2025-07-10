@@ -10,14 +10,14 @@ from src.gui.toast import create_toast
 
 
 class EditableTableview(ttk.Frame):
-    def __init__(self, parent, columns, data=None):
+    def __init__(self, parent, columns, data=None, col_tittle: str = None):
         super().__init__(parent)
 
         # Custom index values
         self.index_values = ["STOP", "PR", "MTBF", "UPDT", "PDT", "NATR"]
 
         # Add 'Index' column with custom values
-        self.columns = ["Index"] + list(columns)
+        self.columns = [col_tittle] + list(columns)
         self.original_columns = columns  # Store original columns without 'Index'
 
         # Configure Treeview style

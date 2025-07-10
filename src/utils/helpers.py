@@ -66,19 +66,43 @@ def get_url_norm_period_loss_tree(
     Returns:
         str: The generated URL.
     """
-    line_prefix = "PMID-SE-CP-L0" if link_up == "17" or "29" else "ID01-SE-CP-L0"
+    line_prefix = "PMID-SE-CP-L0" if link_up == "17" else "ID01-SE-CP-L0"
     params = {
         "table": "SPA_NormPeriodLossTree",
         "act": "query",
+        "db_Normalize": 0,
         "eoa": "x",
-        "db_Line": f"{line_prefix}{link_up}",
-        "db_FunctionalLocation": f"{line_prefix}{link_up}-{functional_location}",
         "db_SegmentDateMin": date,
         "db_ShiftStart": shift,
         "db_ShiftEnd": shift,
+        "db_Line": f"{line_prefix}{link_up}",
         "db_Language": "OEM",
-        "db_Normalize": 0,
+        "db_FunctionalLocation": f"{line_prefix}{link_up}-{functional_location}",
     }
+    """
+    table=SPA_NormPeriodLossTree
+    &act=query
+    &db_Normalize=0
+    &eoa=x
+    &db_SegmentDateMin=2025-07-10
+    &db_ShiftStart=1
+    &db_ShiftEnd=1
+    &db_Line=ID01-SE-CP-L021
+    &db_Language=OEM
+    &db_FunctionalLocation=ID01-SE-CP-L021-MAKE
+
+    http://ots.app.pmi/db.aspx?
+    table=
+    &act=query
+    &db_Normalize=0
+    &eoa=
+    &db_SegmentDateMin=2025-07-10
+    &db_ShiftStart=3
+    &db_ShiftEnd=3
+    &db_Line=PMID-SE-CP-L018
+    &db_Language=OEM
+    &db_FunctionalLocation=PMID-SE-CP-L018-PACK
+    """
     return MAIN_URL + "&".join(f"{key}={value}" for key, value in params.items())
 
 

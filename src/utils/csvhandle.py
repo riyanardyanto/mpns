@@ -15,12 +15,12 @@ data = [
 ]
 
 
-def get_targets_file_path(lu):
+def get_targets_file_path(lu, func_location: str = None):
     script_folder = Path(get_script_folder())
     target_folder = script_folder / "Target"
     target_folder.mkdir(parents=True, exist_ok=True)
 
-    filename = target_folder / f"target_{lu}.csv"
+    filename = target_folder / f"target_{func_location.lower()}_{lu}.csv"
     if not filename.exists():
         df = pd.DataFrame(data, columns=columns)
         df.to_csv(filename, index=False)

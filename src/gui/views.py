@@ -155,12 +155,16 @@ class View(ttk.Window):
         link_up = self.sidebar.lu.get().lstrip("LU")
         date_entry = self.sidebar.dt.entry.get()
         shift = self.sidebar.select_shift.get().lstrip("Shift ")
-        functional_location = self.sidebar.func_location.get()[0:4].upper()
+        functional_location = self.sidebar.func_location.get()
         url = self._get_url(
-            "norm_period_loss_tree", link_up, date_entry, shift, functional_location
+            "norm_period_loss_tree",
+            link_up,
+            date_entry,
+            shift,
+            functional_location[0:4],
         )
 
-        excel_file = get_targets_file_path(link_up)
+        excel_file = get_targets_file_path(link_up, functional_location)
 
         try:
             async with httpx.AsyncClient() as client:
@@ -180,7 +184,11 @@ class View(ttk.Window):
         txt = tabulate(
             pd.DataFrame(data).transpose().reset_index().values.tolist(),
             tablefmt="pretty",
-            headers=[self.sidebar.lu.get(), "TARGET", "ACTUAL"],
+            headers=[
+                f"{self.sidebar.func_location.get()[0]}_{self.sidebar.lu.get()[-2:]}",
+                "TARGET",
+                "ACTUAL",
+            ],
             numalign="left",
             stralign="left",
         )
@@ -233,13 +241,19 @@ class View(ttk.Window):
         self.target.title("Target Editor")
 
         lu = self.sidebar.lu.get().lstrip("LU")
-        file_path = get_targets_file_path(lu)
+        func_loc = self.sidebar.func_location.get()
+        file_path = get_targets_file_path(lu, func_location=func_loc)
         target_df = load_targets_df(file_path)
 
         columns = target_df.columns.to_list()
         data = target_df.values.tolist()
 
-        table = EditableTableview(self.target, columns, data)
+        table = EditableTableview(
+            self.target,
+            columns,
+            data,
+            col_tittle=f"{func_loc} {lu}",
+        )
         table.pack(fill=BOTH, expand=False, padx=10, pady=10)
 
         save_btn = ttk.Button(
@@ -302,8 +316,6 @@ class View(ttk.Window):
         # url = self._get_url("result", link_up, date_entry, shift)
         url = self.config.get("DEFAULT", "url")
         parameter = self.config.get("DEFAULT", "parameter")
-
-        # print(f"URL: {url + '&' + parameter}")
 
         excel_file = get_targets_file_path(link_up)
 
