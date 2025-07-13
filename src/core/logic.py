@@ -1,4 +1,5 @@
 import asyncio
+from typing import Any, Dict, Tuple
 
 import httpx
 import numpy as np
@@ -10,56 +11,42 @@ from src.utils.constants import HEADERS, NTLM_AUTH
 from src.utils.csvhandle import load_targets_df
 
 
-async def fetch_data(url: str, client: httpx.AsyncClient):
-    try:
-        response = await client.get(url, headers=HEADERS, auth=NTLM_AUTH)
-        if response.status_code == 200:
-            data = spa_scraper_pyo3.extract_loss_tree(response.text)
+def _extract_actual(data: spa_scraper_pyo3.SPALossTree) -> Tuple[Dict[str, Any], Any]:
+    """Helper to extract actual values from spa_scraper_pyo3 result."""
+    time_range = data.time_range
+    rate_loss_natr = data.rate_loss.natr.uptime_loss
+    planned_pdt = data.planned.pdt.uptime_loss
+    unplanned_updt = data.unplanned.updt
 
-            time_period = data.time_range.calendar_time
-
-            actual = {
-                "PR": data.time_range.pr,
-                "MTBF": data.time_range.mtbf,
-                "NATR": data.rate_loss.natr.uptime_loss,
-                "PDT": data.planned.pdt.uptime_loss,
-                "STOP": data.unplanned.updt.stops,
-                "UPDT": data.unplanned.updt.uptime_loss,
-            }
-            return actual, time_period
-        else:
-            create_toast(f"HTTP Error: Status {response.status_code}", "danger")
-            return None
-    except Exception as e:
-        create_toast(f"Error fetching data: {e}", "danger")
-        return None
+    return {
+        "PR": time_range.pr,
+        "MTBF": time_range.mtbf,
+        "NATR": rate_loss_natr,
+        "PDT": planned_pdt,
+        "STOP": unplanned_updt.stops,
+        "UPDT": unplanned_updt.uptime_loss,
+    }, time_range.calendar_time
 
 
-async def post_data(url: str, client: httpx.AsyncClient, parameter: str):
-    try:
-        response = await client.post(
-            url + "&" + parameter, headers=HEADERS, auth=NTLM_AUTH
-        )
-        if response.status_code == 200:
-            data = spa_scraper_pyo3.extract_loss_tree(response.text)
+async def fetch_data(url: str, client: httpx.AsyncClient) -> Tuple[Dict[str, Any], Any]:
+    response = await client.get(url, headers=HEADERS, auth=NTLM_AUTH)
+    response.raise_for_status()
+    data: spa_scraper_pyo3.SPALossTree = spa_scraper_pyo3.extract_loss_tree(
+        response.text
+    )
+    return _extract_actual(data)
 
-            time_period = data.time_range.calendar_time
 
-            actual = {
-                "PR": data.time_range.pr,
-                "MTBF": data.time_range.mtbf,
-                "NATR": data.rate_loss.natr.uptime_loss,
-                "PDT": data.planned.pdt.uptime_loss,
-                "STOP": data.unplanned.updt.stops,
-                "UPDT": data.unplanned.updt.uptime_loss,
-            }
-            return actual, time_period
-        else:
-            create_toast(f"HTTP Error: Status {response.status_code}", "danger")
-            return None
-    except Exception as e:
-        create_toast(f"Error fetching data: {e}", "danger")
-        return None
+async def post_data(
+    url: str, client: httpx.AsyncClient, parameter: str
+) -> Tuple[Dict[str, Any], Any]:
+    full_url = f"{url}&{parameter}"
+    response = await client.post(full_url, headers=HEADERS, auth=NTLM_AUTH)
+    response.raise_for_status()
+    data: spa_scraper_pyo3.SPALossTree = spa_scraper_pyo3.extract_loss_tree(
+        response.text
+    )
+    return _extract_actual(data)
 
 
 async def read_csv(file_path: str, shift=1):

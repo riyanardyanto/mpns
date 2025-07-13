@@ -1,11 +1,11 @@
-from typing import Optional
+from typing import List, Optional
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from .spa_struct import Losses, QualityLoss
 
 
-def extract_quality_loss(html: str) -> QualityLoss:
+def extract_quality_loss(html: str) -> Optional[QualityLoss]:
     """
     Extracts quality loss metrics from HTML
 
@@ -15,16 +15,19 @@ def extract_quality_loss(html: str) -> QualityLoss:
     Returns:
         QualityLoss object containing reject loss metrics including downtime and uptime loss
     """
-    soup = BeautifulSoup(html, "html.parser")
-    reject_loss = None
+    soup: BeautifulSoup = BeautifulSoup(html, "lxml")
+    reject_loss: Optional[Losses] = None
 
     for row in soup.select("tr"):
-        tds = row.select("td")
-        if len(tds) >= 7 and any(
-            td.get_text(strip=True) == "Reject losses" for td in tds
-        ):
-            td_texts = [td.get_text(strip=True) for td in tds]
-            reject_loss = Losses(downtime=td_texts[5], uptime_loss=td_texts[6])
-            break
+        tds: List[Tag] = row.select("td")
+        if len(tds) >= 7:
+            for td in tds:
+                cell_text: str = td.get_text(strip=True)
+                if cell_text == "Reject losses":
+                    reject_loss = Losses(
+                        downtime=tds[5].get_text(strip=True),
+                        uptime_loss=tds[6].get_text(strip=True),
+                    )
+                    return QualityLoss(reject_loss=reject_loss)
 
-    return QualityLoss(reject_loss=reject_loss)
+    return None

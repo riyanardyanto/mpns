@@ -1,16 +1,16 @@
 from typing import Optional
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 from .spa_struct import LinePerformance
 
 
-def extract_line_performance(html: str) -> LinePerformance:
+def extract_line_performance(html_text: str) -> LinePerformance:
     """
     Extracts line performance metrics from HTML
 
     Args:
-        html: The HTML string containing line performance data
+        html_text: The HTML string containing line performance data
 
     Returns:
         LinePerformance object containing metrics like failure rate, run time, MTBF, and reject counts
@@ -18,23 +18,29 @@ def extract_line_performance(html: str) -> LinePerformance:
     Raises:
         ValueError: If the Analysis row is not found or has insufficient columns
     """
-    soup = BeautifulSoup(html, "html.parser")
-    line_performance = LinePerformance()
+    soup: BeautifulSoup = BeautifulSoup(html_text, "html.parser")
+    line_performance: LinePerformance = LinePerformance()
 
-    for row in soup.select("tr"):
-        tds = row.select("td")
-        if not tds:
-            continue
-        # Only extract text if "Analysis" is present
-        if any("Analysis" in td.get_text(strip=True) for td in tds):
-            if len(tds) < 14:
-                raise ValueError("Insufficient columns in Analysis row")
-            td_texts = [td.get_text(strip=True) for td in tds]
-            line_performance.line_failure = td_texts[4]
-            line_performance.run_time = td_texts[6]
-            line_performance.line_mtbf = td_texts[8]
-            line_performance.reject = td_texts[10]
-            line_performance.total_reject = td_texts[13]
-            return line_performance
+    # Find the first <tr> containing "Analysis" in any <td>
+    analysis_row: Optional[Tag] = next(
+        (
+            row
+            for row in soup.find_all("tr")
+            if any("Analysis" in td.get_text(strip=True) for td in row.find_all("td"))
+        ),
+        None,
+    )
 
-    raise ValueError("Could not find Analysis row in HTML")
+    if not analysis_row:
+        raise ValueError("Could not find Analysis row in HTML")
+
+    tds: list[Tag] = analysis_row.find_all("td")
+    if len(tds) < 14:
+        raise ValueError("Insufficient columns in Analysis row")
+
+    line_performance.line_failure = tds[4].get_text(strip=True)
+    line_performance.run_time = tds[6].get_text(strip=True)
+    line_performance.line_mtbf = tds[8].get_text(strip=True)
+    line_performance.reject = tds[10].get_text(strip=True)
+    line_performance.total_reject = tds[13].get_text(strip=True)
+    return line_performance

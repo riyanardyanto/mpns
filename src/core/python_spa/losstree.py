@@ -10,63 +10,26 @@ from .time_range import extract_time_range
 from .unplanned import extract_unplanned_downtime
 
 
-def extract_equipment(html: str) -> str:
-    """
-    Extracts equipment name from HTML header
-
-    Args:
-        html: The HTML string to parse
-
-    Returns:
-        The equipment name as a string
-
-    Raises:
-        ValueError: If the equipment name cannot be found or the selector fails
-    """
-    soup = BeautifulSoup(html, "html.parser")
+def extract_equipment(soup) -> str:
     b_tags = soup.select("b")
-
     if not b_tags:
         raise ValueError("Could not find equipment name in HTML")
-
     text = b_tags[0].get_text(strip=True)
     equipment = text.split("Period:")[0].strip() if "Period:" in text else ""
-
     if not equipment:
         raise ValueError("Could not find equipment name in HTML")
-
     return equipment
 
 
-def extract_period(html: str) -> str:
-    """
-    Extracts period information from HTML header
-
-    Args:
-        html: The HTML string to parse
-
-    Returns:
-        The period information as a string
-
-    Raises:
-        ValueError: If the period information cannot be found or the selector fails
-    """
-    soup = BeautifulSoup(html, "html.parser")
+def extract_period(soup) -> str:
     b_tags = soup.select("b")
-
     if not b_tags:
         raise ValueError("Could not find period information in HTML")
-
     text = b_tags[0].get_text(strip=True)
-    period = (
-        text.split("Period:")[1].strip()
-        if "Period:" in text and len(text.split("Period:")) > 1
-        else ""
-    )
-
+    parts = text.split("Period:")
+    period = parts[1].strip() if len(parts) > 1 else ""
     if not period:
         raise ValueError("Could not find period information in HTML")
-
     return period
 
 
@@ -80,50 +43,23 @@ def extract_loss_tree(html: str) -> SPALossTree:
     Returns:
         SPALossTree object containing all extracted metrics
     """
-    try:
-        equipment = extract_equipment(html)
-    except ValueError:
-        equipment = None
+    soup = BeautifulSoup(html, "html.parser")
 
-    try:
-        period = extract_period(html)
-    except ValueError:
-        period = None
+    def safe_extract(func, *args):
+        try:
+            return func(*args)
+        except Exception:
+            return None
 
-    try:
-        time_range = extract_time_range(html)
-    except ValueError:
-        time_range = None
-
-    try:
-        product_by_po = extract_products(html)
-    except ValueError:
-        product_by_po = None
-
-    try:
-        line_performance = extract_line_performance(html)
-    except ValueError:
-        line_performance = None
-
-    try:
-        rate_loss = extract_rate_loss(html)
-    except ValueError:
-        rate_loss = None
-
-    try:
-        quality_loss = extract_quality_loss(html)
-    except ValueError:
-        quality_loss = None
-
-    try:
-        planned = extract_planned_downtime(html)
-    except ValueError:
-        planned = None
-
-    try:
-        unplanned = extract_unplanned_downtime(html)
-    except ValueError:
-        unplanned = None
+    equipment = safe_extract(extract_equipment, soup)
+    period = safe_extract(extract_period, soup)
+    time_range = safe_extract(extract_time_range, html)
+    product_by_po = safe_extract(extract_products, html)
+    line_performance = safe_extract(extract_line_performance, html)
+    rate_loss = safe_extract(extract_rate_loss, html)
+    quality_loss = safe_extract(extract_quality_loss, html)
+    planned = safe_extract(extract_planned_downtime, html)
+    unplanned = safe_extract(extract_unplanned_downtime, html)
 
     return SPALossTree(
         equipment=equipment,

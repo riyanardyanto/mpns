@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Dict, List, Optional, Set
 
 from bs4 import BeautifulSoup
 
@@ -19,39 +19,41 @@ def extract_rate_loss(html: str) -> RateLoss:
     Raises:
         ValueError: If selectors cannot be parsed
     """
-    soup = BeautifulSoup(html, "html.parser")
-    losses = RateLoss()
+    soup: BeautifulSoup = BeautifulSoup(html, "html.parser")
+    losses: RateLoss = RateLoss()
 
-    keyword_map = {
+    keyword_map: Dict[str, str] = {
         "Design speed loss": "dsl",
         "Target rate loss": "trl",
         "Not at Target Rate": "natr",
         "Start-up/Ramp-down": "ramp_up_down",
     }
 
-    found = set()
+    found: Set[str] = set()
+    keywords: Set[str] = set(keyword_map.keys())
 
     for row in soup.select("tr"):
         tds = row.select("td")
         if len(tds) < 7:
             continue
-        td_texts = [td.get_text(strip=True) for td in tds]
-        for keyword, attr in keyword_map.items():
-            if keyword in " ".join(td_texts) and attr not in found:
+        row_text: str = " ".join(td.get_text(strip=True) for td in tds)
+        for keyword in keywords - found:
+            if keyword in row_text:
+                attr: str = keyword_map[keyword]
                 setattr(
                     losses,
                     attr,
                     Losses(
                         time="",
                         stops="",
-                        downtime=td_texts[5],
-                        uptime_loss=td_texts[6],
+                        downtime=tds[5].get_text(strip=True),
+                        uptime_loss=tds[6].get_text(strip=True),
                         mtbf="",
                         mttr="",
                         details="",
                     ),
                 )
-                found.add(attr)
+                found.add(keyword)
                 if len(found) == len(keyword_map):
                     return losses
 
