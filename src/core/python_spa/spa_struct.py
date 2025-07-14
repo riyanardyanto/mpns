@@ -1,10 +1,10 @@
 import json
-from dataclasses import asdict, dataclass, field
 from typing import List, Optional
 
+from pydantic import BaseModel
 
-@dataclass(slots=True)
-class TimeRange:
+
+class TimeRange(BaseModel):
     calendar_time: Optional[str] = None
     missing_data_time: Optional[str] = None
     valid_time: Optional[str] = None
@@ -22,20 +22,17 @@ class TimeRange:
     efficiency: Optional[str] = None
 
 
-@dataclass(slots=True)
-class Products:
+class Products(BaseModel):
     po: Optional[str] = None
     fa_code: Optional[str] = None
     time: Optional[str] = None
 
 
-@dataclass(slots=True)
-class ProductByPO:
-    products: List[Products] = field(default_factory=list)
+class ProductByPO(BaseModel):
+    products: List[Products] = []
 
 
-@dataclass(slots=True)
-class LinePerformance:
+class LinePerformance(BaseModel):
     line_failure: Optional[str] = None
     run_time: Optional[str] = None
     line_mtbf: Optional[str] = None
@@ -43,8 +40,7 @@ class LinePerformance:
     total_reject: Optional[str] = None
 
 
-@dataclass(slots=True)
-class Losses:
+class Losses(BaseModel):
     time: Optional[str] = None
     stops: Optional[str] = None
     downtime: Optional[str] = None
@@ -54,21 +50,18 @@ class Losses:
     details: Optional[str] = None
 
 
-@dataclass(slots=True)
-class RateLoss:
+class RateLoss(BaseModel):
     dsl: Optional[Losses] = None
     trl: Optional[Losses] = None
     natr: Optional[Losses] = None
     ramp_up_down: Optional[Losses] = None
 
 
-@dataclass(slots=True)
-class QualityLoss:
+class QualityLoss(BaseModel):
     reject_loss: Optional[Losses] = None
 
 
-@dataclass(slots=True)
-class PlannedStopReason:
+class PlannedStopReason(BaseModel):
     description: Optional[str] = None
     time: Optional[str] = None
     stops: Optional[str] = None
@@ -79,14 +72,12 @@ class PlannedStopReason:
     details: Optional[str] = None
 
 
-@dataclass(slots=True)
-class Planned:
+class Planned(BaseModel):
     pdt: Optional[Losses] = None
-    pdt_reason: List[PlannedStopReason] = field(default_factory=list)
+    pdt_reason: List[PlannedStopReason] = []
 
 
-@dataclass(slots=True)
-class UnplannedStopReason:
+class UnplannedStopReason(BaseModel):
     description: Optional[str] = None
     stops: Optional[str] = None
     ramp_up: Optional[str] = None
@@ -99,24 +90,21 @@ class UnplannedStopReason:
     causing_equipment: Optional[str] = None
 
 
-@dataclass(slots=True)
-class UPDT:
+class UPDT(BaseModel):
     category: Optional[str] = None
     losses: Optional[Losses] = None
 
 
-@dataclass(slots=True)
-class Unplanned:
-    updt: Losses = field(default_factory=Losses)
-    updt_shift: List[UPDT] = field(default_factory=list)
-    updt_category: List[UPDT] = field(default_factory=list)
-    bde: List[UPDT] = field(default_factory=list)
-    pf: List[UPDT] = field(default_factory=list)
-    updt_reason: List[UnplannedStopReason] = field(default_factory=list)
+class Unplanned(BaseModel):
+    updt: Losses = Losses()
+    updt_shift: List[UPDT] = []
+    updt_category: List[UPDT] = []
+    bde: List[UPDT] = []
+    pf: List[UPDT] = []
+    updt_reason: List[UnplannedStopReason] = []
 
 
-@dataclass(slots=True)
-class SPALossTree:
+class SPALossTree(BaseModel):
     equipment: Optional[str] = None
     period: Optional[str] = None
     time_range: Optional[TimeRange] = None
@@ -128,18 +116,16 @@ class SPALossTree:
     unplanned: Optional[Unplanned] = None
 
 
-@dataclass(slots=True)
-class StopReason:
+class StopReason(BaseModel):
     description: Optional[str] = None
     stops: Optional[str] = None
     downtime_min: Optional[str] = None
     oee_percent: Optional[str] = None
     rejects_percent: Optional[str] = None
-    stops_per_shift: List[str] = field(default_factory=list)
+    stops_per_shift: List[str] = []
 
 
-@dataclass(slots=True)
-class Machine:
+class Machine(BaseModel):
     id: Optional[str] = None
     machine_type: Optional[str] = None
     total_downtime_min: Optional[str] = None
@@ -150,20 +136,19 @@ class Machine:
     total_rejects_percent: Optional[str] = None
     mtbf_min: Optional[str] = None
     mttr_min: Optional[str] = None
-    stop_reasons: List[StopReason] = field(default_factory=list)
+    stop_reasons: List[StopReason] = []
 
     def to_dict(self):
-        return asdict(self)
+        return self.model_dump()
 
 
-@dataclass(slots=True)
-class StopStatistics:
+class StopStatistics(BaseModel):
     factory: Optional[str] = None
     line: Optional[str] = None
     design_speed: Optional[str] = None
     target_speed: Optional[str] = None
     time_period: Optional[str] = None
-    machines: List[Machine] = field(default_factory=list)
+    machines: List[Machine] = []
 
     def to_dict(self):
-        return asdict(self)
+        return self.model_dump()

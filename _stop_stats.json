@@ -1,1 +1,244 @@
-{"factory": "Karawang PMID", "line": "Link-up 27", "design_speed": "10000", "target_speed": "8400", "time_period": "2025-01-05 14:00 to 2025-01-05 20:36", "machines": [{"id": "ID01-SE-CP-L027-MAKE", "machine_type": "Maker - Hauni PROTOS PM 100", "total_downtime_min": "80.067", "total_stops": "23", "total_run_time_min": "316", "avg_speed_cig_per_min": "8316", "production_mio_cig": "2.632 Mio", "total_rejects_percent": "0.75", "mtbf_min": "13.8", "mttr_min": "3.5", "stop_reasons": [{"description": "MAX roll. block jam", "stops": "9", "downtime_min": "14.0", "oee_percent": "3.53", "rejects_percent": "0.010", "stops_per_shift": ["", "9", ""]}, {"description": "MAX turn. drum jam", "stops": "7", "downtime_min": "13.8", "oee_percent": "3.49", "rejects_percent": "0.007", "stops_per_shift": ["", "7", ""]}, {"description": "SE rod break", "stops": "4", "downtime_min": "8.7", "oee_percent": "2.19", "rejects_percent": "0.018", "stops_per_shift": ["", "4", ""]}, {"description": "No speed", "stops": "1", "downtime_min": "4.0", "oee_percent": "1.01", "rejects_percent": "0.020", "stops_per_shift": ["", "1", ""]}, {"description": "MAX tipping break", "stops": "1", "downtime_min": "3.3", "oee_percent": "0.841", "rejects_percent": "0.001", "stops_per_shift": ["", "1", ""]}, {"description": "MAX filter rod monitor top", "stops": "1", "downtime_min": "1.3", "oee_percent": "0.336", "rejects_percent": "0.004", "stops_per_shift": ["", "1", ""]}]}, {"id": "ID01-SE-CP-L027-PACK", "machine_type": "Packer - Focke 550 (F5)", "total_downtime_min": "63.200", "total_stops": "12", "total_run_time_min": "333", "avg_speed_cig_per_min": "7948", "production_mio_cig": "2.649 Mio", "total_rejects_percent": "0.17", "mtbf_min": "27.8", "mttr_min": "5.3", "stop_reasons": [{"description": "S BLANK MISSING IN TURRET", "stops": "2", "downtime_min": "3.8", "oee_percent": "0.946", "rejects_percent": "0.010", "stops_per_shift": ["", "2", ""]}, {"description": "PACKET GUIDE, PACKET TRACK", "stops": "2", "downtime_min": "1.7", "oee_percent": "0.420", "rejects_percent": "0.002", "stops_per_shift": ["", "2", ""]}, {"description": "No speed", "stops": "1", "downtime_min": "12.7", "oee_percent": "3.20", "rejects_percent": "0.007", "stops_per_shift": ["", "1", ""]}, {"description": "FOIL BREAK, TENSIONING ARM", "stops": "1", "downtime_min": "3.8", "oee_percent": "0.963", "rejects_percent": "0.006", "stops_per_shift": ["", "1", ""]}, {"description": "INNER FRAME IN BENDING STATION", "stops": "1", "downtime_min": "3.4", "oee_percent": "0.845", "rejects_percent": "0.001", "stops_per_shift": ["", "1", ""]}, {"description": "FOLDING GUIDE 1", "stops": "1", "downtime_min": "1.9", "oee_percent": "0.467", "rejects_percent": "0.006", "stops_per_shift": ["", "1", ""]}, {"description": "TRANSVERSE DISCHARGE (AXIS 1) OPEN", "stops": "1", "downtime_min": "1.3", "oee_percent": "0.336", "rejects_percent": "0.002", "stops_per_shift": ["", "1", ""]}, {"description": "TURRET COVER, RIGHT", "stops": "1", "downtime_min": "1.2", "oee_percent": "0.307", "rejects_percent": "0.005", "stops_per_shift": ["", "1", ""]}, {"description": "STATUS UNKNOWN", "stops": "1", "downtime_min": "1.0", "oee_percent": "0.248", "rejects_percent": "0.013", "stops_per_shift": ["", "1", ""]}, {"description": "CIG. VANES EMPTY", "stops": "1", "downtime_min": "1.0", "oee_percent": "0.248", "rejects_percent": "0.002", "stops_per_shift": ["", "1", ""]}]}, {"id": "ID01-SE-CP-L027-BUFB", "machine_type": "Pack Buffer - Focke 741", "total_downtime_min": "334.550", "total_stops": "9", "total_run_time_min": "62", "avg_speed_cig_per_min": "0", "production_mio_cig": "", "total_rejects_percent": "", "mtbf_min": "6.88", "mttr_min": "37.2", "stop_reasons": [{"description": "STANDBY 0 percent", "stops": "9", "downtime_min": "302.8", "oee_percent": "76.4", "rejects_percent": "0", "stops_per_shift": ["", "9", ""]}]}, {"id": "ID01-SE-CP-L027-WRAP", "machine_type": "Wrapper - Focke 751", "total_downtime_min": "60.183", "total_stops": "16", "total_run_time_min": "336", "avg_speed_cig_per_min": "7884", "production_mio_cig": "2.652 Mio", "total_rejects_percent": "0.03", "mtbf_min": "21.0", "mttr_min": "3.8", "stop_reasons": [{"description": "UPSTREAM MACHINE", "stops": "8", "downtime_min": "18.4", "oee_percent": "4.64", "rejects_percent": "0.011", "stops_per_shift": ["", "8", ""]}, {"description": "DOWNSTREAM MACHINE", "stops": "3", "downtime_min": "4.5", "oee_percent": "1.13", "rejects_percent": "0", "stops_per_shift": ["", "3", ""]}, {"description": "STANDBY", "stops": "2", "downtime_min": "1.2", "oee_percent": "0.298", "rejects_percent": "0", "stops_per_shift": ["", "2", ""]}, {"description": "LIFTER, DISCHARGE", "stops": "1", "downtime_min": "2.0", "oee_percent": "0.504", "rejects_percent": "0.020", "stops_per_shift": ["", "1", ""]}, {"description": "FILM DETECTOR, LEFT AND RIGHT", "stops": "1", "downtime_min": "1.5", "oee_percent": "0.378", "rejects_percent": "0.006", "stops_per_shift": ["", "1", ""]}, {"description": "No speed", "stops": "1", "downtime_min": "0.3", "oee_percent": "0.084", "rejects_percent": "0.005", "stops_per_shift": ["", "1", ""]}]}, {"id": "ID01-SE-CP-L027-BNDL", "machine_type": "Bundler - Focke 411", "total_downtime_min": "74.767", "total_stops": "13", "total_run_time_min": "322", "avg_speed_cig_per_min": "8257", "production_mio_cig": "2.657 Mio", "total_rejects_percent": "0.05", "mtbf_min": "24.7", "mttr_min": "5.8", "stop_reasons": [{"description": "UPSTREAM MACHINE", "stops": "6", "downtime_min": "12.7", "oee_percent": "3.19", "rejects_percent": "0", "stops_per_shift": ["", "6", ""]}, {"description": "STANDBY", "stops": "5", "downtime_min": "26.0", "oee_percent": "6.56", "rejects_percent": "0", "stops_per_shift": ["", "5", ""]}, {"description": "STOP BUTTON", "stops": "1", "downtime_min": "2.0", "oee_percent": "0.500", "rejects_percent": "0", "stops_per_shift": ["", "1", ""]}, {"description": "BACK-UP IN DISCHARGE 2", "stops": "1", "downtime_min": "1.2", "oee_percent": "0.307", "rejects_percent": "0", "stops_per_shift": ["", "1", ""]}]}, {"id": "ID01-SE-CP-L027-CASE", "machine_type": "Case packer - Focke 487", "total_downtime_min": "57.033", "total_stops": "17", "total_run_time_min": "339", "avg_speed_cig_per_min": "7747", "production_mio_cig": "2.63 Mio", "total_rejects_percent": "1.13", "mtbf_min": "20.0", "mttr_min": "3.4", "stop_reasons": [{"description": "STANDBY", "stops": "6", "downtime_min": "12.3", "oee_percent": "3.11", "rejects_percent": "0", "stops_per_shift": ["", "6", ""]}, {"description": "REMOVE WASTE CASE FROM DISCHARGE", "stops": "3", "downtime_min": "2.0", "oee_percent": "0.496", "rejects_percent": "0", "stops_per_shift": ["", "3", ""]}, {"description": "DOOR OPEN S 20.5", "stops": "2", "downtime_min": "1.2", "oee_percent": "0.303", "rejects_percent": "0", "stops_per_shift": ["", "2", ""]}, {"description": "No volume", "stops": "2", "downtime_min": "0.7", "oee_percent": "0.168", "rejects_percent": "0", "stops_per_shift": ["", "2", ""]}, {"description": "PARCEL LABELLER NOT IN POSITION", "stops": "1", "downtime_min": "1.9", "oee_percent": "0.479", "rejects_percent": "0", "stops_per_shift": ["", "1", ""]}, {"description": "STOP BUTTON PRESSED", "stops": "1", "downtime_min": "1.3", "oee_percent": "0.332", "rejects_percent": "0", "stops_per_shift": ["", "1", ""]}, {"description": "DOWNSTREAM MACHINE", "stops": "1", "downtime_min": "0.5", "oee_percent": "0.130", "rejects_percent": "0", "stops_per_shift": ["", "1", ""]}, {"description": "CBL PRINTER FAULT", "stops": "1", "downtime_min": "0.3", "oee_percent": "0.084", "rejects_percent": "0", "stops_per_shift": ["", "1", ""]}]}]}
+{
+    "equipment": "(ID01-SE-CP-L021-MAKE)",
+    "period": "2025-07-13 shift 2",
+    "time_range": {
+        "calendar_time": "2025-07-13 14:00 to 2025-07-13 18:48",
+        "missing_data_time": "0",
+        "valid_time": "288",
+        "excluded_time": "0",
+        "reference_run_time": "259",
+        "theo_production_run_time": "247",
+        "pr": "85.6",
+        "uptime": "82.1",
+        "mtbf": "16.2",
+        "mttr": "1.9",
+        "net_production": "2.368",
+        "theo_production_target_speed": "2.768",
+        "theo_production_design_speed": "2.883",
+        "availability": "89.7%",
+        "efficiency": "85.6%"
+    },
+    "product_by_po": null,
+    "line_performance": {
+        "line_failure": "29",
+        "run_time": "264",
+        "line_mtbf": "9.09",
+        "reject": "2.59",
+        "total_reject": "62.39 k cig."
+    },
+    "rate_loss": {
+        "dsl": {
+            "time": "",
+            "stops": "",
+            "downtime": "9.9",
+            "uptime_loss": "3.42",
+            "mtbf": "",
+            "mttr": "",
+            "details": ""
+        },
+        "trl": {
+            "time": "",
+            "stops": "",
+            "downtime": "5.5",
+            "uptime_loss": "1.91",
+            "mtbf": "",
+            "mttr": "",
+            "details": ""
+        },
+        "natr": {
+            "time": "",
+            "stops": "",
+            "downtime": "1.3",
+            "uptime_loss": "0.453",
+            "mtbf": "",
+            "mttr": "",
+            "details": ""
+        },
+        "ramp_up_down": {
+            "time": "",
+            "stops": "",
+            "downtime": "4.2",
+            "uptime_loss": "1.45",
+            "mtbf": "",
+            "mttr": "",
+            "details": ""
+        }
+    },
+    "quality_loss": {
+        "reject_loss": {
+            "time": null,
+            "stops": null,
+            "downtime": "6.5",
+            "uptime_loss": "2.25",
+            "mtbf": null,
+            "mttr": null,
+            "details": null
+        }
+    },
+    "planned": null,
+    "unplanned": {
+        "updt": {
+            "time": null,
+            "stops": "16",
+            "downtime": "29.6",
+            "uptime_loss": "10.3",
+            "mtbf": "16.2",
+            "mttr": "1.9",
+            "details": null
+        },
+        "updt_shift": [
+            {
+                "category": "Shift 2",
+                "losses": {
+                    "time": null,
+                    "stops": "16",
+                    "downtime": "29.6",
+                    "uptime_loss": "10.3",
+                    "mtbf": "16.2",
+                    "mttr": "1.9",
+                    "details": null
+                }
+            }
+        ],
+        "updt_category": [
+            {
+                "category": "300",
+                "losses": {
+                    "time": null,
+                    "stops": "16",
+                    "downtime": "29.7",
+                    "uptime_loss": "10.3",
+                    "mtbf": "16.2",
+                    "mttr": "1.9",
+                    "details": null
+                }
+            }
+        ],
+        "bde": [
+            {
+                "category": "Brea",
+                "losses": {
+                    "time": "",
+                    "stops": "0.0",
+                    "downtime": "%",
+                    "uptime_loss": "0",
+                    "mtbf": "",
+                    "mttr": "Theoritical production during breakdowns / Theoritical production at target speed",
+                    "details": ""
+                }
+            }
+        ],
+        "pf": [
+            {
+                "category": "Process failures (> 1",
+                "losses": {
+                    "time": "",
+                    "stops": "0.0",
+                    "downtime": "%",
+                    "uptime_loss": "0",
+                    "mtbf": "",
+                    "mttr": "Theo. prod. during process failures/ Theo. prod.",
+                    "details": ""
+                }
+            }
+        ],
+        "updt_reason": [
+            {
+                "description": "MAX turn. Drum choke",
+                "stops": "4",
+                "ramp_up": "0",
+                "downtime": "6.9",
+                "uptime_loss": "2.38",
+                "mtbf": "64.7",
+                "mttr": "1.7",
+                "rejects_percent": "0.072",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:9530"
+            },
+            {
+                "description": "MAX filter rod monitor top",
+                "stops": "3",
+                "ramp_up": "0",
+                "downtime": "5.6",
+                "uptime_loss": "1.95",
+                "mtbf": "86.2",
+                "mttr": "1.9",
+                "rejects_percent": "0.038",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:9509"
+            },
+            {
+                "description": "Stop link-up machine",
+                "stops": "3",
+                "ramp_up": "0",
+                "downtime": "2.3",
+                "uptime_loss": "0.809",
+                "mtbf": "86.2",
+                "mttr": "0.8",
+                "rejects_percent": "0.052",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:9532"
+            },
+            {
+                "description": "VE no tobacco",
+                "stops": "2",
+                "ramp_up": "0",
+                "downtime": "2.8",
+                "uptime_loss": "0.983",
+                "mtbf": "129",
+                "mttr": "1.4",
+                "rejects_percent": "0.034",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:8717"
+            },
+            {
+                "description": "SE manual stop",
+                "stops": "1",
+                "ramp_up": "0",
+                "downtime": "4.3",
+                "uptime_loss": "1.50",
+                "mtbf": "259",
+                "mttr": "4.3",
+                "rejects_percent": "0.008",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:8994"
+            },
+            {
+                "description": "MAX tipping break",
+                "stops": "1",
+                "ramp_up": "0",
+                "downtime": "3.2",
+                "uptime_loss": "1.10",
+                "mtbf": "259",
+                "mttr": "3.2",
+                "rejects_percent": "0.010",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:9525"
+            },
+            {
+                "description": "SE knife advance",
+                "stops": "1",
+                "ramp_up": "0",
+                "downtime": "2.5",
+                "uptime_loss": "0.867",
+                "mtbf": "259",
+                "mttr": "2.5",
+                "rejects_percent": "0.013",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:9012"
+            },
+            {
+                "description": "SE rod break",
+                "stops": "1",
+                "ramp_up": "0",
+                "downtime": "2.0",
+                "uptime_loss": "0.694",
+                "mtbf": "259",
+                "mttr": "2.0",
+                "rejects_percent": "0.011",
+                "stops_per_shift": "",
+                "causing_equipment": "Maker - Code:9528"
+            }
+        ]
+    }
+}

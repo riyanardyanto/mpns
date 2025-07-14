@@ -13,19 +13,15 @@ from src.utils.csvhandle import load_targets_df
 
 def _extract_actual(data: spa_scraper_pyo3.SPALossTree) -> Tuple[Dict[str, Any], Any]:
     """Helper to extract actual values from spa_scraper_pyo3 result."""
-    time_range = data.time_range
-    rate_loss_natr = data.rate_loss.natr.uptime_loss
-    planned_pdt = data.planned.pdt.uptime_loss
-    unplanned_updt = data.unplanned.updt
 
     return {
-        "PR": time_range.pr,
-        "MTBF": time_range.mtbf,
-        "NATR": rate_loss_natr,
-        "PDT": planned_pdt,
-        "STOP": unplanned_updt.stops,
-        "UPDT": unplanned_updt.uptime_loss,
-    }, time_range.calendar_time
+        "PR": data.time_range.pr if data.time_range else 0,
+        "MTBF": data.time_range.mtbf if data.time_range else 0,
+        "NATR": data.rate_loss.natr.uptime_loss if data.rate_loss else 0,
+        "PDT": data.planned.pdt.uptime_loss if data.planned else 0,
+        "STOP": data.unplanned.updt.stops if data.unplanned else 0,
+        "UPDT": data.unplanned.updt.uptime_loss if data.unplanned else 0,
+    }, data.time_range.calendar_time
 
 
 async def fetch_data(url: str, client: httpx.AsyncClient) -> Tuple[Dict[str, Any], Any]:

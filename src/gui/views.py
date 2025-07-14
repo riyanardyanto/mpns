@@ -89,6 +89,7 @@ class View(ttk.Window):
         else:
             # For development or testing environment, use local HTML files
             return f"http://127.0.0.1:5500/assets/{endpoint_type}.html"
+            # return "http://127.0.0.1:5500/assets/no_pdt.html"
 
     @async_handler
     async def get_data(self):

@@ -126,7 +126,7 @@ class TextEditor(ttk.ScrolledText):
                 self.insert(ttk.INSERT, "> ")
             else:
                 # Otherwise, insert at the current cursor position
-                self.insert(ttk.INSERT, "\n> ")
+                self.insert(ttk.INSERT, "\n\n> ")
 
         except tk.TclError:
             pass
